@@ -1,0 +1,29 @@
+[
+  {
+    "id": "rhynehart-roofing-amarillo",
+    "date": "2026-11-04T21:28:00.000Z",
+    "businessName": "Rhynehart Roofing, Inc.",
+    "ownerName": "Chris Rhynehart, René Montoya & Dale Orr",
+    "location": "Amarillo, TX",
+    "domain": "rhynehart.com",
+    "phone": "(806) 622-0090",
+    "primaryKeyword": "Roofing contractor Amarillo tx",
+    "overallScore": "45",
+    "foundationScore": "74",
+    "visibilityScore": "16",
+    "aiScore": "6",
+    "reviewsSummary": "4.9★ across 96 Google reviews (Continuous praise for René & Dale)",
+    "geoGridFindings": "Ranks #1 to #3 within 1 mile of McCormick Rd, but drops to #15 to #50+ across Central and North Amarillo (Downtown, Wolflin, Soncy)",
+    "competitors": "Accent Roofing, Roof Smith, TRX Roofing, Morgan & Myers",
+    "h1Status": "0 H1 tags on entire website (Starts directly at H2)",
+    "onPageIssues": "Zero H1 tags; /copy-of-services indexed with misspelled 'Sevices' in title; 100% duplicate meta descriptions; missing physical address in footer; plain text phone numbers (no click-to-call); 53 missing image alt tags",
+    "contentDepth": "Thin content (services page has only 399 words, avg 317 words site-wide)",
+    "citationGaps": "Missing Angi (DA 86), BuildZoom (DA 60); 0% visibility in Google AI Overviews for hail and leak repair",
+    "roadmapPhases": [
+      "Phase 1: Foundation & Technical Hygiene (Redirect /copy-of-services, H1 hierarchy, JSON-LD Schema, Click-to-call)",
+      "Phase 2: High-Converting Service Hubs & Neighborhood Expansion (Hail damage, leak repair, Canyon & Bushland pages)",
+      "Phase 3: GBP & Citation Authority (Add secondary categories, 50+ photos, claim Angi & BuildZoom)",
+      "Phase 4: GEO & Review Conversion Engine (AI Search FAQ schemas, review generation automation)"
+    ]
+  }
+]

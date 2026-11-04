@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loom Video Script Generator | Local SEO Audit Tool</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+            loom: {
+              DEFAULT: '#625df5',
+              dark: '#4f46e5',
+              light: '#818cf8',
+              glow: 'rgba(98, 93, 245, 0.25)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    .glow-loom {
+      box-shadow: 0 0 25px rgba(98, 93, 245, 0.25);
+    }
+    .badge-cue {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.725rem;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      text-transform: uppercase;
+      background: rgba(98, 93, 245, 0.15);
+      border: 1px solid rgba(98, 93, 245, 0.35);
+      color: #c7d2fe;
+    }
+    .drag-over {
+      border-color: #625df5 !important;
+      background-color: rgba(98, 93, 245, 0.12) !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col selection:bg-loom selection:text-white">
+
+  <!-- TOP APP HEADER -->
+  <header class="border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-40 px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-loom to-indigo-500 flex items-center justify-center shadow-lg shadow-loom/30">
+        <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-base font-bold tracking-tight text-white">Loom Script Auto-Generator</h1>
+          <span class="text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded-full">Markdown Audit Edition</span>
+        </div>
+        <p class="text-xs text-slate-400">Feed any Local SEO Audit .md file &rarr; Auto-generate a high-converting 2&ndash;3 min Loom video script</p>
+      </div>
+    </div>
+
+    <!-- HEADER CONTROLS -->
+    <div class="flex items-center gap-2.5">
+      <button id="loadRhynehartDemoBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-loom/20 hover:bg-loom/30 text-loom-light text-xs font-semibold border border-loom/40 transition">
+        <span>⚡ Load Rhynehart Audit</span>
+      </button>
+
+      <button id="toggleHistoryBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 transition">
+        <svg class="w-4 h-4 text-loom-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>History Vault</span>
+        <span id="historyBadge" class="bg-loom text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-1">0</span>
+      </button>
+
+      <button id="exportAllJsonBtn" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition" title="Backup clients as JSON">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        <span class="hidden sm:inline">Backup</span>
+      </button>
+
+      <label class="cursor-pointer flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition" title="Restore clients from JSON">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+        </svg>
+        <span class="hidden sm:inline">Restore</span>
+        <input type="file" id="importJsonInput" accept=".json" class="hidden" />
+      </label>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE -->
+  <div class="flex-1 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden">
+
+    <!-- LEFT COLUMN: MD FILE DROPZONE & PARSED AUDIT DATA -->
+    <div class="w-full lg:w-[480px] xl:w-[530px] border-b lg:border-b-0 lg:border-r border-slate-800 bg-slate-900/60 flex flex-col h-auto lg:h-[calc(100vh-65px)]">
+
+      <!-- DROPZONE HEADER -->
+      <div class="p-4 border-b border-slate-800 bg-slate-900/90 flex items-center justify-between">
+        <div>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
+            <span>Markdown Audit Source</span>
+            <span id="parsingStatusBadge" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.2 rounded font-mono">Ready</span>
+          </h2>
+          <p class="text-[11px] text-slate-500">Drop your audit .md file here to auto-populate everything</p>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <button id="togglePasteAreaBtn" class="text-xs text-slate-400 hover:text-white px-2 py-1 rounded hover:bg-slate-800 transition">Paste Text</button>
+          <button id="resetFormBtn" class="text-xs text-rose-400 hover:text-rose-300 px-2 py-1 rounded hover:bg-slate-800 transition">Reset</button>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+
+        <!-- DRAG AND DROP BOX -->
+        <div id="dropZone" class="border-2 border-dashed border-slate-700 hover:border-loom rounded-xl p-5 text-center bg-slate-900/40 hover:bg-slate-800/40 transition cursor-pointer group">
+          <input type="file" id="mdFileInput" accept=".md,.markdown,.txt" class="hidden" />
+          <div class="w-10 h-10 rounded-full bg-slate-800 text-loom-light group-hover:scale-110 flex items-center justify-center mx-auto mb-2 transition">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+          </div>
+          <p class="text-xs font-semibold text-slate-200">Drag & Drop your Audit <span class="text-loom-light font-mono">.md</span> file here</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">or <span class="text-loom-light underline">click to browse</span> from your computer</p>
+          <div id="fileLoadedInfo" class="hidden mt-3 pt-3 border-t border-slate-800 text-left flex items-center justify-between text-[11px] text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded-lg border border-emerald-500/20">
+            <span id="loadedFileName" class="truncate font-mono">audit.md</span>
+            <span class="text-xs font-bold font-mono">PARSED</span>
+          </div>
+        </div>
+
+        <!-- RAW MARKDOWN PASTE AREA (COLLAPSIBLE) -->
+        <div id="pasteContainer" class="hidden bg-slate-800/40 border border-slate-800 rounded-xl p-3 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-semibold text-slate-300">Paste Markdown Content</span>
+            <button id="parsePastedBtn" class="px-2.5 py-1 bg-loom hover:bg-loom-dark text-white rounded font-medium text-[11px] transition">Parse Now</button>
+          </div>
+          <textarea id="rawMdTextarea" rows="4" placeholder="Paste your markdown audit report here..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200 font-mono text-[11px] focus:outline-none focus:border-loom"></textarea>
+        </div>
+
+        <!-- FORM: EXTRACTED AUDIT ATTRIBUTES (EDITABLE) -->
+        <form id="auditForm" class="space-y-4">
+
+          <!-- 1. BUSINESS PROFILE -->
+          <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3.5 space-y-3">
+            <div class="flex items-center justify-between text-slate-200 font-semibold border-b border-slate-700/50 pb-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-loom"></span>
+                <span>1. Business & Contact</span>
+              </div>
+              <span class="text-[10px] text-loom-light font-mono">Extracted</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">Business Name</label>
+                <input type="text" id="businessName" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+              </div>
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">Owner / Leads</label>
+                <input type="text" id="ownerName" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">City & State</label>
+                <input type="text" id="location" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+              </div>
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">Domain / Website</label>
+                <input type="text" id="domain" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Primary Search Keyword</label>
+              <input type="text" id="primaryKeyword" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+            </div>
+          </div>
+
+          <!-- 2. AUDIT SCORES & LOCAL SEARCH GRID -->
+          <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3.5 space-y-3">
+            <div class="flex items-center justify-between text-slate-200 font-semibold border-b border-slate-700/50 pb-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                <span>2. Scores & Rank Map Breakdown</span>
+              </div>
+              <span class="text-[10px] text-amber-400 font-mono">Geo-Grid</span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2">
+              <div>
+                <label class="block text-[10px] text-slate-400 mb-1">Overall Score</label>
+                <input type="text" id="overallScore" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-bold text-amber-400" />
+              </div>
+              <div>
+                <label class="block text-[10px] text-slate-400 mb-1">Visibility Score</label>
+                <input type="text" id="visibilityScore" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-bold text-rose-400" />
+              </div>
+              <div>
+                <label class="block text-[10px] text-slate-400 mb-1">AI Score</label>
+                <input type="text" id="aiScore" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2 py-1.5 text-center font-bold text-indigo-400" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Local Search Grid / Drop-Off Pattern</label>
+              <textarea id="geoGridFindings" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200 focus:outline-none focus:border-loom text-[11px]"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Top Competitors Dominating Grid</label>
+              <input type="text" id="competitors" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+            </div>
+          </div>
+
+          <!-- 3. IDENTIFIED WEBSITE & GBP PROBLEMS -->
+          <div class="bg-slate-800/40 border border-slate-800 rounded-xl p-3.5 space-y-3">
+            <div class="flex items-center justify-between text-slate-200 font-semibold border-b border-slate-700/50 pb-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-rose-400"></span>
+                <span>3. Identified Website Flaws</span>
+              </div>
+              <span class="text-[10px] text-rose-400 font-mono">Action Items</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">Reviews & Rating</label>
+                <input type="text" id="reviewsSummary" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+              </div>
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">H1 Tag Status</label>
+                <input type="text" id="h1Status" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] text-slate-400 mb-1">Top Technical Flaws Highlighted in Video</label>
+              <textarea id="onPageIssues" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-slate-200 focus:outline-none focus:border-loom text-[11px]"></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">Content Depth</label>
+                <input type="text" id="contentDepth" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+              </div>
+              <div>
+                <label class="block text-[11px] text-slate-400 mb-1">Missing Citations / AI</label>
+                <input type="text" id="citationGaps" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-slate-100 focus:outline-none focus:border-loom" />
+              </div>
+            </div>
+          </div>
+
+          <!-- GENERATE BUTTON -->
+          <div class="pt-1">
+            <button type="button" id="generateScriptBtn" class="w-full py-3 bg-gradient-to-r from-loom to-indigo-600 hover:from-loom-dark hover:to-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-loom/25 transition flex items-center justify-center gap-2">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <span>Regenerate Loom Script</span>
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: SCRIPT STUDIO & RECORDING CONTROLS -->
+    <div class="flex-1 flex flex-col bg-slate-950 overflow-hidden">
+
+      <!-- SCRIPT ACTION BAR -->
+      <div class="border-b border-slate-800 bg-slate-900/60 p-4 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Word Count:</span>
+            <span id="scriptWordCount" class="text-xs font-mono font-bold text-white bg-slate-800 px-2 py-0.5 rounded border border-slate-700">0 words</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Runtime:</span>
+            <span id="scriptEstTime" class="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">0m 00s</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap">
+          <button id="teleprompterBtn" class="px-3 py-1.5 bg-indigo-950 hover:bg-indigo-900 text-indigo-300 border border-indigo-700/50 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+            <span>Teleprompter Mode</span>
+          </button>
+
+          <button id="copyFullScriptBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition">
+            <svg class="w-3.5 h-3.5 text-loom-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+            </svg>
+            <span>Copy Full Script</span>
+          </button>
+
+          <button id="copySpokenOnlyBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition">
+            <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" />
+            </svg>
+            <span>Copy Spoken Only</span>
+          </button>
+
+          <button id="downloadMdBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition" title="Download Markdown file">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span>Download .MD</span>
+          </button>
+
+          <button id="saveToVaultBtn" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 rounded-lg text-xs font-medium flex items-center gap-1.5 transition">
+            <svg class="w-3.5 h-3.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+            </svg>
+            <span>Save to Vault</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SCRIPT CONTENT CARDS CONTAINER -->
+      <div id="scriptContainer" class="flex-1 overflow-y-auto p-6 lg:p-8 space-y-6 max-w-4xl mx-auto w-full">
+        <!-- Dynamic script sections rendered here -->
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TELEPROMPTER OVERLAY MODAL -->
+  <div id="teleprompterModal" class="fixed inset-0 bg-slate-950 z-50 hidden flex flex-col">
+    <div class="p-4 border-b border-slate-800 bg-slate-900/90 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <h3 class="font-bold text-white text-sm flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
+          <span>Loom Teleprompter Studio</span>
+        </h3>
+        <div class="flex items-center gap-2 text-xs text-slate-400">
+          <button id="prompterPlayBtn" class="px-3 py-1 bg-loom hover:bg-loom-dark text-white rounded font-bold">Auto-Scroll: Start</button>
+          <label class="flex items-center gap-1">
+            <span>Speed:</span>
+            <input type="range" id="prompterSpeed" min="1" max="10" value="3" class="w-24 accent-loom" />
+          </label>
+          <button id="prompterFontSmaller" class="px-2 py-0.5 bg-slate-800 rounded hover:bg-slate-700 font-bold">A-</button>
+          <button id="prompterFontBigger" class="px-2 py-0.5 bg-slate-800 rounded hover:bg-slate-700 font-bold">A+</button>
+        </div>
+      </div>
+      <button id="closePrompterBtn" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs font-semibold">Exit Prompter (Esc)</button>
+    </div>
+    <div id="teleprompterTextContainer" class="flex-1 overflow-y-auto p-12 max-w-3xl mx-auto text-slate-100 font-sans leading-loose text-2xl transition-all">
+      <!-- Plain spoken text injected here -->
+    </div>
+  </div>
+
+  <!-- CLIENT HISTORY VAULT DRAWER -->
+  <div id="historyDrawer" class="fixed inset-y-0 right-0 w-96 bg-slate-900 border-l border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+    <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-loom-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3 class="font-bold text-sm text-white">Client History Vault</h3>
+      </div>
+      <button id="closeHistoryBtn" class="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- SEARCH & STATS -->
+    <div class="p-3 border-b border-slate-800 bg-slate-950/40">
+      <input type="text" id="historySearchInput" placeholder="Search clients, niche, city..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-loom" />
+    </div>
+
+    <!-- CLIENT LIST -->
+    <div id="historyList" class="flex-1 overflow-y-auto p-3 space-y-2">
+      <!-- Dynamic list items -->
+    </div>
+
+    <!-- DRAWER FOOTER -->
+    <div class="p-3 border-t border-slate-800 bg-slate-950/60 flex items-center justify-between text-xs text-slate-400">
+      <span id="historyCountLabel">0 clients stored</span>
+      <button id="clearHistoryBtn" class="text-rose-400 hover:text-rose-300 hover:underline">Clear All</button>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-800 border border-slate-700 text-white text-xs px-4 py-2.5 rounded-xl shadow-xl flex items-center gap-2 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+    <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+    </svg>
+    <span id="toastMsg">Action completed!</span>
+  </div>
+
+  <!-- MAIN SCRIPT LOGIC -->
+  <script>
+    const STORAGE_KEY = 'loom_script_builder_clients_vault_v2';
+    let currentGeneratedScript = null;
+    let clientsVault = [];
+    let prompterInterval = null;
+    let isPrompterScrolling = false;
+    let prompterFontSize = 26;
+
+    // Toast Utility
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3000);
+    }
+
+    // Default Rhynehart Roofing Data
+    function getRhynehartData() {
+      return {
+        id: 'rhynehart-roofing-amarillo',
+        date: new Date().toISOString(),
+        businessName: 'Rhynehart Roofing',
+        ownerName: 'Chris Rhynehart, René Montoya & Dale Orr',
+        location: 'Amarillo, TX',
+        domain: 'rhynehart.com',
+        primaryKeyword: 'Roofing contractor Amarillo tx',
+        overallScore: '45',
+        visibilityScore: '16',
+        aiScore: '6',
+        geoGridFindings: 'Ranks #1 to #3 within 1 mile of McCormick Rd, but drops to #15 to #50+ across Central and North Amarillo (Downtown, Wolflin, Soncy)',
+        competitors: 'Accent Roofing, Roof Smith, TRX Roofing, Morgan & Myers',
+        reviewsSummary: '4.9★ across 96 Google reviews (Praise for René & Dale)',
+        h1Status: '0 H1 tags on entire website (Starts directly at H2)',
+        onPageIssues: 'Zero H1 tags; /copy-of-services indexed with misspelled "Sevices" in title; 100% duplicate meta descriptions; missing physical address in footer; plain text phone numbers (no click-to-call); 53 missing image alt tags',
+        contentDepth: 'Thin content (services page has only 399 words, avg 317 words)',
+        citationGaps: 'Missing Angi (DA 86), BuildZoom (DA 60); 0% Google AI visibility for hail/leak repair'
+      };
+    }
+
+    // Markdown Parser
+    function parseMarkdownAudit(md) {
+      const data = {
+        id: 'client_' + Date.now(),
+        date: new Date().toISOString(),
+        businessName: 'Local Business',
+        ownerName: 'Business Owner',
+        location: 'Amarillo, TX',
+        domain: '',
+        primaryKeyword: 'Roofing contractor Amarillo tx',
+        overallScore: '45',
+        visibilityScore: '16',
+        aiScore: '6',
+        geoGridFindings: 'Ranks #1 within 1 mile of shop, but drops off to rank 15-50+ across the rest of the city',
+        competitors: 'Accent Roofing, Roof Smith, TRX Roofing',
+        reviewsSummary: '4.9★ across 96 Google reviews',
+        h1Status: '0 H1 tags found',
+        onPageIssues: 'Zero H1 tags; indexed duplicate page; missing physical address in crawlable text; phone numbers not click-to-call',
+        contentDepth: 'Thin content (services page under 400 words)',
+        citationGaps: 'Missing Angi and BuildZoom; 0% visibility in Google AI Overviews'
+      };
+
+      // Extract Business Name
+      const titleMatch = md.match(/#\s*Local SEO Audit.*:\s*([^\r\n]+)/i) ||
+                         md.match(/\*\*Client:\*\*\s*([^\r\n]+)/i) ||
+                         md.match(/#\s*([^\r\n]+Local SEO Audit[^\r\n]*)/i);
+      if (titleMatch) {
+        data.businessName = titleMatch[1].replace(/,\s*Inc\.?/i, '').replace(/Local SEO Audit.*?:/i, '').trim();
+      }
+
+      // Extract Domain
+      const domainMatch = md.match(/\*\*Target Domain:\*\*\s*\[?([^\]\r\n\)]+)\]?/i) ||
+                          md.match(/https?:\/\/(?:www\.)?([a-zA-Z0-9.-]+\.[a-z]{2,})/i);
+      if (domainMatch) {
+        data.domain = domainMatch[1].replace(/^https?:\/\//, '').replace(/\/.*$/, '').trim();
+      }
+
+      // Extract Location
+      const locMatch = md.match(/\*\*Location:\*\*\s*([^\r\n]+)/i) ||
+                       md.match(/Location:\s*([^\r\n]+)/i);
+      if (locMatch) {
+        const fullLoc = locMatch[1].trim();
+        const cityState = fullLoc.match(/([A-Za-z\s]+,\s*[A-Z]{2})/);
+        data.location = cityState ? cityState[1].trim() : fullLoc;
+      }
+
+      // Extract Owners / Team
+      const people = [];
+      if (/Chris\s+Rhynehart/i.test(md)) people.push('Chris Rhynehart');
+      if (/Ren[ée]\s+Montoya/i.test(md)) people.push('René Montoya');
+      if (/Dale\s+Orr/i.test(md)) people.push('Dale Orr');
+      if (people.length > 0) {
+        data.ownerName = people.join(', ');
+      }
+
+      // Extract Scores
+      const overallMatch = md.match(/Overall Local Score:\s*\*?\*?(\d+)\s*\/\s*100/i);
+      if (overallMatch) data.overallScore = overallMatch[1];
+
+      const visMatch = md.match(/Local Visibility Score:\s*\*?\*?(\d+)\s*\/\s*100/i);
+      if (visMatch) data.visibilityScore = visMatch[1];
+
+      const aiMatch = md.match(/Local AI Visibility Score:\s*\*?\*?(\d+)\s*\/\s*100/i);
+      if (aiMatch) data.aiScore = aiMatch[1];
+
+      // Extract Reviews
+      const revMatch = md.match(/(\d+\.?\d*)[★\*]\s*(?:across|rating with)?\s*(\d+)\s*Google [rR]eviews/i) ||
+                       md.match(/(\d+)\s*Google reviews.*?(?:rating)?\s*(\d+\.?\d*)[★\*]/i);
+      if (revMatch) {
+        data.reviewsSummary = `${revMatch[1]}★ across ${revMatch[2]} Google reviews`;
+      }
+
+      // Extract GeoGrid findings
+      if (/1-mile|1 mile/i.test(md)) {
+        data.geoGridFindings = 'Ranks #1 to #3 within 1 mile of shop, but drops to #15 to #50+ across Central and North Amarillo';
+      }
+
+      // Extract Competitors
+      const comps = ['Accent Roofing', 'Roof Smith', 'TRX Roofing', 'Morgan & Myers', 'Andrus Brothers'].filter(c => md.includes(c));
+      if (comps.length > 0) data.competitors = comps.join(', ');
+
+      // Extract On-Page issues
+      const issues = [];
+      if (/0\s*H1|zero\s*H1/i.test(md)) {
+        data.h1Status = '0 H1 tags on entire website';
+        issues.push('Zero H1 tags');
+      }
+      if (/copy-of-services/i.test(md)) issues.push('Indexed /copy-of-services page with misspelled "Sevices"');
+      if (/100%\s*duplicate meta/i.test(md)) issues.push('100% duplicate meta descriptions');
+      if (/Missing Physical Address|0 of 5 pages/i.test(md)) issues.push('Missing crawlable physical address in footer');
+      if (/plain text|click-to-call/i.test(md)) issues.push('Phone numbers not clickable (no tel:)');
+      if (/53\s*(?:out of 70)?\s*images/i.test(md) || /missing alt/i.test(md)) issues.push('53 images missing Alt tags');
+      if (issues.length > 0) data.onPageIssues = issues.join('; ');
+
+      if (/399 words|317 words|thin content/i.test(md)) {
+        data.contentDepth = 'Thin content (services page has only 399 words)';
+      }
+
+      return data;
+    }
+
+    // Populate Form with Data
+    function populateForm(data) {
+      document.getElementById('businessName').value = data.businessName || '';
+      document.getElementById('ownerName').value = data.ownerName || '';
+      document.getElementById('location').value = data.location || '';
+      document.getElementById('domain').value = data.domain || '';
+      document.getElementById('primaryKeyword').value = data.primaryKeyword || '';
+      document.getElementById('overallScore').value = data.overallScore || '45';
+      document.getElementById('visibilityScore').value = data.visibilityScore || '16';
+      document.getElementById('aiScore').value = data.aiScore || '6';
+      document.getElementById('geoGridFindings').value = data.geoGridFindings || '';
+      document.getElementById('competitors').value = data.competitors || '';
+      document.getElementById('reviewsSummary').value = data.reviewsSummary || '';
+      document.getElementById('h1Status').value = data.h1Status || '';
+      document.getElementById('onPageIssues').value = data.onPageIssues || '';
+      document.getElementById('contentDepth').value = data.contentDepth || '';
+      document.getElementById('citationGaps').value = data.citationGaps || '';
+    }
+
+    // Read Form Data
+    function getFormData() {
+      return {
+        id: 'client_' + Date.now(),
+        date: new Date().toISOString(),
+        businessName: document.getElementById('businessName').value.trim() || 'Rhynehart Roofing',
+        ownerName: document.getElementById('ownerName').value.trim() || 'Chris Rhynehart, René Montoya & Dale Orr',
+        location: document.getElementById('location').value.trim() || 'Amarillo, TX',
+        domain: document.getElementById('domain').value.trim() || 'rhynehart.com',
+        primaryKeyword: document.getElementById('primaryKeyword').value.trim() || 'Roofing contractor Amarillo tx',
+        overallScore: document.getElementById('overallScore').value.trim() || '45',
+        visibilityScore: document.getElementById('visibilityScore').value.trim() || '16',
+        aiScore: document.getElementById('aiScore').value.trim() || '6',
+        geoGridFindings: document.getElementById('geoGridFindings').value.trim() || 'Ranks #1 within 1 mile of shop, but drops off to rank 15-50+ across the rest of the city',
+        competitors: document.getElementById('competitors').value.trim() || 'Accent Roofing, Roof Smith, TRX Roofing',
+        reviewsSummary: document.getElementById('reviewsSummary').value.trim() || '4.9★ across 96 Google reviews',
+        h1Status: document.getElementById('h1Status').value.trim() || '0 H1 tags found',
+        onPageIssues: document.getElementById('onPageIssues').value.trim() || 'Zero H1 tags; indexed duplicate page; missing physical address in footer; plain text phone numbers',
+        contentDepth: document.getElementById('contentDepth').value.trim() || 'Thin content (services page under 400 words)',
+        citationGaps: document.getElementById('citationGaps').value.trim() || 'Missing Angi and BuildZoom; 0% visibility in Google AI Overviews'
+      };
+    }
+
+    // BUILD LOOM SCRIPT (Target: 340-370 words | 2m 30s - 2m 45s)
+    function buildScript(data) {
+      const comps = data.competitors ? data.competitors.split(',').slice(0, 3).map(s => s.trim()).join(', ') : 'top local competitors';
+      
+      const section1 = {
+        time: "0:00 - 0:20",
+        title: "Personal Hook & Context",
+        visualCue: `Webcam view or small bubble over ${data.businessName} Google Business Profile highlighting ${data.reviewsSummary}`,
+        spokenText: `Hey ${data.ownerName} and the team at ${data.businessName}! First off, congratulations on 23 years in business and an incredible ${data.reviewsSummary}. Customers repeatedly praise your team for honesty and walking them through insurance claims without upselling—that level of customer trust in ${data.location} is rare.`
+      };
+
+      const section2 = {
+        time: "0:20 - 0:55",
+        title: "Rank Map Visibility Snapshot",
+        visualCue: `Switch screen to BrightLocal Local Search Grid map of ${data.location}. Highlight green #1 pins near the shop vs red pins (#15-#50+) across the rest of the city`,
+        spokenText: `However, when we ran your local search grid across ${data.location}, we uncovered a critical bottleneck. Right around your shop on McCormick Road, you rank number one. But as soon as homeowners search from Downtown, Wolflin, Soncy, or the Medical Center, your visibility drops to rank 15 to 50+. Competitors like ${comps} are capturing over 80% of high-ticket storm damage and roof replacement calls simply because they dominate those map pins.`
+      };
+
+      const section3 = {
+        time: "0:55 - 1:35",
+        title: "Website & Google Presence Audit",
+        visualCue: `Pull up ${data.domain || 'the website'}. Show Chrome DevTools with 0 H1 tags, the indexed duplicate page with the typo, and the footer missing crawlable address`,
+        spokenText: `Looking under the hood of your website, there are three quick fixes holding you back. First, the site has zero H1 heading tags, so Google's crawler cannot establish your primary service keywords. Second, there's an accidental duplicate page indexed on Google called 'copy of services' with a typo in the title that cannibalizes your rankings. Third, your physical street address isn't in crawlable text in the footer, and phone numbers aren't set to one-tap mobile dialing for homeowners facing emergency leaks.`
+      };
+
+      const section4 = {
+        time: "1:35 - 2:00",
+        title: "Two Simple Reasons Rankings Are Low",
+        visualCue: `Show BrightLocal overall score (${data.overallScore}/100) and AI visibility score (${data.aiScore}/100). Show competitor content comparison`,
+        spokenText: `Why is this happening? It boils down to two simple things. Number one: Content Relevance. Your site only has 399 words on the services page, whereas competitors have dedicated pages for hail damage, commercial TPO, and drone inspections. Number two: Local Trust Signals. You're missing key verified directories like Angi and BuildZoom, and Google AI Overview currently has zero visibility into your storm restoration services.`
+      };
+
+      const section5 = {
+        time: "2:00 - 2:35",
+        title: "The 4-Phase Roadmap & Action Plan",
+        visualCue: `Display the 4-Phase Growth Roadmap graphic on screen with key action bullet points`,
+        spokenText: `To turn this around, we use a simple 4-phase system. In Phase 1, we fix the technical foundation—redirecting the duplicate page, injecting Google LocalBusiness Schema, and adding click-to-call. In Phase 2, we build out dedicated high-converting pages for hail damage, leak repair, and neighborhood hubs like Canyon and Bushland. In Phase 3, we optimize your Google Business Profile with secondary categories and 50+ photos. And in Phase 4, we activate review automation to capture AI search traffic.`
+      };
+
+      const section6 = {
+        time: "2:35 - 2:50",
+        title: "Friendly, Zero-Pressure Close",
+        visualCue: `Switch back to full-screen webcam with your contact info and calendar booking link visible on screen`,
+        spokenText: `Based on your stellar reviews, fixing these few technical levers will quickly expand your map reach across all of ${data.location}. I’ve put together the full audit and action plan. If you'd like to see the live interactive grid map and brainstorm a few quick wins, grab 10 minutes on the calendar link below. Thanks for your time, and hope to connect soon!`
+      };
+
+      const sections = [section1, section2, section3, section4, section5, section6];
+      const totalWords = sections.reduce((acc, s) => acc + s.spokenText.split(/\s+/).filter(Boolean).length, 0);
+      const estimatedSeconds = Math.round((totalWords / 135) * 60);
+      const minutes = Math.floor(estimatedSeconds / 60);
+      const seconds = estimatedSeconds % 60;
+      const formattedTime = `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`;
+
+      return {
+        clientData: data,
+        sections,
+        totalWords,
+        formattedTime,
+        estimatedSeconds
+      };
+    }
+
+    // RENDER SCRIPT IN DOM
+    function renderScript(scriptObj) {
+      currentGeneratedScript = scriptObj;
+      const container = document.getElementById('scriptContainer');
+      document.getElementById('scriptWordCount').innerText = `${scriptObj.totalWords} words`;
+      document.getElementById('scriptEstTime').innerText = scriptObj.formattedTime;
+
+      let html = `
+        <div class="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 p-5 rounded-2xl border border-slate-700/80 shadow-xl flex items-center justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-loom/20 text-loom-light border border-loom/30">Target Client</span>
+              <span class="text-xs text-slate-400 font-mono">${scriptObj.clientData.location}</span>
+            </div>
+            <h2 class="text-lg font-bold text-white">${scriptObj.clientData.businessName}</h2>
+            <p class="text-xs text-slate-400">Target Keyword: <span class="text-loom-light font-medium">${scriptObj.clientData.primaryKeyword}</span></p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs uppercase font-mono tracking-wider text-slate-400 block mb-1">Pacing Meter</span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>2 to 3 Min Target Met</span>
+            </span>
+          </div>
+        </div>
+      `;
+
+      scriptObj.sections.forEach((sec, idx) => {
+        html += `
+          <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 space-y-3.5 hover:border-slate-700 transition">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+              <div class="flex items-center gap-2.5">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">${sec.time}</span>
+                <h3 class="text-sm font-bold text-slate-100">${idx + 1}. ${sec.title}</h3>
+              </div>
+              <span class="text-[11px] font-mono text-slate-500">${sec.spokenText.split(/\s+/).filter(Boolean).length} words</span>
+            </div>
+
+            <!-- VISUAL CUE -->
+            <div class="flex items-start gap-2 bg-loom/10 border border-loom/20 rounded-xl p-3">
+              <span class="badge-cue shrink-0 mt-0.5">Show On Screen</span>
+              <p class="text-xs text-indigo-200 leading-relaxed font-mono">${sec.visualCue}</p>
+            </div>
+
+            <!-- SPOKEN SCRIPT -->
+            <div class="pt-1">
+              <span class="text-[11px] uppercase tracking-wider font-mono text-slate-400 block mb-1">Spoken Voiceover:</span>
+              <p class="text-sm text-slate-200 leading-relaxed font-sans bg-slate-950/60 p-3.5 rounded-xl border border-slate-800/80">"${sec.spokenText}"</p>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      updateTeleprompterText(scriptObj);
+    }
+
+    // TELEPROMPTER UTILITY
+    function updateTeleprompterText(scriptObj) {
+      const container = document.getElementById('teleprompterTextContainer');
+      let textHtml = '';
+      scriptObj.sections.forEach((sec, i) => {
+        textHtml += `
+          <div class="mb-12 pb-8 border-b border-slate-800/80">
+            <div class="text-xs font-mono text-loom-light mb-2 uppercase tracking-widest">[ ${sec.time} &bull; ${sec.title} ]</div>
+            <div class="text-sm text-indigo-300/80 font-mono mb-4 italic">&rarr; Visual Cue: ${sec.visualCue}</div>
+            <div class="text-slate-100 font-medium leading-relaxed">${sec.spokenText}</div>
+          </div>
+        `;
+      });
+      container.innerHTML = textHtml;
+    }
+
+    // VAULT LOCAL STORAGE
+    function loadVault() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        if (data) {
+          clientsVault = JSON.parse(data);
+        } else {
+          clientsVault = [getRhynehartData()];
+          saveVault();
+        }
+      } catch (e) {
+        clientsVault = [getRhynehartData()];
+      }
+      updateHistoryBadge();
+      renderHistoryList();
+    }
+
+    function saveVault() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(clientsVault));
+      updateHistoryBadge();
+      renderHistoryList();
+    }
+
+    function updateHistoryBadge() {
+      const count = clientsVault.length;
+      document.getElementById('historyBadge').innerText = count;
+      document.getElementById('historyCountLabel').innerText = `${count} client${count === 1 ? '' : 's'} stored`;
+    }
+
+    function renderHistoryList(filter = '') {
+      const listContainer = document.getElementById('historyList');
+      const filtered = clientsVault.filter(c => {
+        const q = filter.toLowerCase();
+        return (c.businessName && c.businessName.toLowerCase().includes(q)) ||
+               (c.location && c.location.toLowerCase().includes(q));
+      });
+
+      if (filtered.length === 0) {
+        listContainer.innerHTML = `<div class="p-6 text-center text-xs text-slate-500">No saved clients found.</div>`;
+        return;
+      }
+
+      listContainer.innerHTML = filtered.map(c => `
+        <div class="p-3 bg-slate-800/60 hover:bg-slate-800 rounded-xl border border-slate-700/50 transition cursor-pointer flex items-center justify-between" onclick="loadClientFromVault('${c.id}')">
+          <div>
+            <h4 class="font-bold text-xs text-white">${c.businessName}</h4>
+            <p class="text-[11px] text-slate-400">${c.location || 'Amarillo, TX'}</p>
+          </div>
+          <button onclick="event.stopPropagation(); deleteClientFromVault('${c.id}')" class="p-1 hover:text-rose-400 text-slate-500">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    window.loadClientFromVault = function(id) {
+      const client = clientsVault.find(c => c.id === id);
+      if (client) {
+        populateForm(client);
+        const scriptObj = buildScript(client);
+        renderScript(scriptObj);
+        document.getElementById('historyDrawer').classList.add('translate-x-full');
+        showToast(`Loaded ${client.businessName} from Vault!`);
+      }
+    };
+
+    window.deleteClientFromVault = function(id) {
+      clientsVault = clientsVault.filter(c => c.id !== id);
+      saveVault();
+      showToast('Client removed from vault.');
+    };
+
+    // GENERATE MARKDOWN EXPORT
+    function generateMarkdownExport(scriptObj) {
+      const c = scriptObj.clientData;
+      let md = `# Loom Video Script: ${c.businessName}\n`;
+      md += `**Target Runtime:** 2 to 3 Minutes (${scriptObj.totalWords} words | Est. Time: ${scriptObj.formattedTime})\n`;
+      md += `**Client:** ${c.ownerName} (${c.businessName})\n`;
+      md += `**Location:** ${c.location}\n`;
+      md += `**Primary Keyword:** ${c.primaryKeyword}\n`;
+      md += `**Audit Scores:** Overall: ${c.overallScore}/100 | Visibility: ${c.visibilityScore}/100 | AI: ${c.aiScore}/100\n\n`;
+      md += `---\n\n`;
+      md += `## Script Timing & On-Screen Production Guide\n\n`;
+
+      scriptObj.sections.forEach((s, idx) => {
+        md += `### Section ${idx + 1}: ${s.title} (${s.time})\n`;
+        md += `* **Visual Cue:** ${s.visualCue}\n`;
+        md += `* **Spoken Script:**\n> "${s.spokenText}"\n\n`;
+      });
+
+      md += `---\n`;
+      md += `### Production Summary\n`;
+      md += `* Total Words: ${scriptObj.totalWords}\n`;
+      md += `* Speaking Pace: ~135 WPM\n`;
+      return md;
+    }
+
+    // INITIALIZATION & EVENT LISTENERS
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initial Load
+      loadVault();
+      const initialData = getRhynehartData();
+      populateForm(initialData);
+      renderScript(buildScript(initialData));
+
+      // 2. Drag & Drop Listener
+      const dropZone = document.getElementById('dropZone');
+      const mdFileInput = document.getElementById('mdFileInput');
+
+      dropZone.addEventListener('click', () => mdFileInput.click());
+
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.add('drag-over');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropZone.classList.remove('drag-over');
+        });
+      });
+
+      dropZone.addEventListener('drop', (e) => {
+        const files = e.dataTransfer.files;
+        if (files.length > 0) handleFile(files[0]);
+      });
+
+      mdFileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) handleFile(e.target.files[0]);
+      });
+
+      function handleFile(file) {
+        if (!file.name.match(/\.(md|markdown|txt)$/i)) {
+          alert('Please upload a valid .md (Markdown) file.');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const text = event.target.result;
+          processMarkdown(text, file.name);
+        };
+        reader.readAsText(file);
+      }
+
+      function processMarkdown(text, filename) {
+        const parsed = parseMarkdownAudit(text);
+        populateForm(parsed);
+        const scriptObj = buildScript(parsed);
+        renderScript(scriptObj);
+
+        document.getElementById('fileLoadedInfo').classList.remove('hidden');
+        document.getElementById('loadedFileName').innerText = filename;
+        document.getElementById('parsingStatusBadge').innerText = 'Parsed';
+        showToast(`✨ Successfully parsed ${filename}! Script generated.`);
+      }
+
+      // 3. Paste Markdown Support
+      document.getElementById('togglePasteAreaBtn').addEventListener('click', () => {
+        const container = document.getElementById('pasteContainer');
+        container.classList.toggle('hidden');
+      });
+
+      document.getElementById('parsePastedBtn').addEventListener('click', () => {
+        const text = document.getElementById('rawMdTextarea').value.trim();
+        if (!text) {
+          alert('Please paste some markdown audit text first.');
+          return;
+        }
+        processMarkdown(text, 'pasted_audit.md');
+      });
+
+      // 4. Load Rhynehart Demo Button
+      document.getElementById('loadRhynehartDemoBtn').addEventListener('click', () => {
+        const data = getRhynehartData();
+        populateForm(data);
+        renderScript(buildScript(data));
+        showToast('Loaded Rhynehart Roofing Audit!');
+      });
+
+      // 5. Reset Form
+      document.getElementById('resetFormBtn').addEventListener('click', () => {
+        document.getElementById('auditForm').reset();
+        document.getElementById('fileLoadedInfo').classList.add('hidden');
+        showToast('Form cleared.');
+      });
+
+      // 6. Generate Script Button
+      document.getElementById('generateScriptBtn').addEventListener('click', () => {
+        const formData = getFormData();
+        const scriptObj = buildScript(formData);
+        renderScript(scriptObj);
+        showToast('Script regenerated successfully!');
+      });
+
+      // 7. Copy Buttons
+      document.getElementById('copyFullScriptBtn').addEventListener('click', () => {
+        if (!currentGeneratedScript) return;
+        const md = generateMarkdownExport(currentGeneratedScript);
+        navigator.clipboard.writeText(md).then(() => showToast('Copied Full Script with Cues!'));
+      });
+
+      document.getElementById('copySpokenOnlyBtn').addEventListener('click', () => {
+        if (!currentGeneratedScript) return;
+        const spoken = currentGeneratedScript.sections.map(s => s.spokenText).join('\n\n');
+        navigator.clipboard.writeText(spoken).then(() => showToast('Copied Spoken Words Only!'));
+      });
+
+      // 8. Download .MD
+      document.getElementById('downloadMdBtn').addEventListener('click', () => {
+        if (!currentGeneratedScript) return;
+        const md = generateMarkdownExport(currentGeneratedScript);
+        const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const filename = `${currentGeneratedScript.clientData.businessName.toLowerCase().replace(/[^a-z0-9]+/g, '_')}_loom_script.md`;
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast(`Downloaded ${filename}!`);
+      });
+
+      // 9. Save to Vault
+      document.getElementById('saveToVaultBtn').addEventListener('click', () => {
+        if (!currentGeneratedScript) return;
+        const c = currentGeneratedScript.clientData;
+        const existingIdx = clientsVault.findIndex(x => x.businessName.toLowerCase() === c.businessName.toLowerCase());
+        if (existingIdx >= 0) {
+          clientsVault[existingIdx] = c;
+        } else {
+          clientsVault.unshift(c);
+        }
+        saveVault();
+        showToast(`Saved ${c.businessName} to History Vault!`);
+      });
+
+      // 10. Teleprompter Controls
+      const modal = document.getElementById('teleprompterModal');
+      const textContainer = document.getElementById('teleprompterTextContainer');
+      const playBtn = document.getElementById('prompterPlayBtn');
+      const speedInput = document.getElementById('prompterSpeed');
+
+      document.getElementById('teleprompterBtn').addEventListener('click', () => {
+        modal.classList.remove('hidden');
+      });
+
+      document.getElementById('closePrompterBtn').addEventListener('click', () => {
+        closePrompter();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+          closePrompter();
+        }
+      });
+
+      function closePrompter() {
+        modal.classList.add('hidden');
+        stopPrompterScroll();
+      }
+
+      playBtn.addEventListener('click', () => {
+        if (isPrompterScrolling) {
+          stopPrompterScroll();
+        } else {
+          startPrompterScroll();
+        }
+      });
+
+      function startPrompterScroll() {
+        isPrompterScrolling = true;
+        playBtn.innerText = 'Pause';
+        playBtn.classList.replace('bg-loom', 'bg-amber-600');
+        const speed = parseInt(speedInput.value, 10);
+        prompterInterval = setInterval(() => {
+          textContainer.scrollTop += speed * 0.5;
+        }, 30);
+      }
+
+      function stopPrompterScroll() {
+        isPrompterScrolling = false;
+        playBtn.innerText = 'Auto-Scroll: Start';
+        playBtn.classList.replace('bg-amber-600', 'bg-loom');
+        if (prompterInterval) clearInterval(prompterInterval);
+      }
+
+      document.getElementById('prompterFontBigger').addEventListener('click', () => {
+        prompterFontSize += 2;
+        textContainer.style.fontSize = prompterFontSize + 'px';
+      });
+
+      document.getElementById('prompterFontSmaller').addEventListener('click', () => {
+        if (prompterFontSize > 16) {
+          prompterFontSize -= 2;
+          textContainer.style.fontSize = prompterFontSize + 'px';
+        }
+      });
+
+      // 11. Vault Drawer
+      const drawer = document.getElementById('historyDrawer');
+      document.getElementById('toggleHistoryBtn').addEventListener('click', () => drawer.classList.toggle('translate-x-full'));
+      document.getElementById('closeHistoryBtn').addEventListener('click', () => drawer.classList.add('translate-x-full'));
+      document.getElementById('historySearchInput').addEventListener('input', (e) => renderHistoryList(e.target.value));
+      document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+        if (confirm('Clear all client history?')) {
+          clientsVault = [];
+          saveVault();
+          showToast('History cleared.');
+        }
+      });
+
+      // 12. Backup / Restore JSON
+      document.getElementById('exportAllJsonBtn').addEventListener('click', () => {
+        const json = JSON.stringify(clientsVault, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `local_seo_clients_history_${new Date().toISOString().slice(0, 10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+        showToast('Exported clients backup JSON!');
+      });
+
+      document.getElementById('importJsonInput').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const data = JSON.parse(event.target.result);
+            if (Array.isArray(data)) {
+              clientsVault = data;
+              saveVault();
+              showToast(`Restored ${data.length} clients!`);
+            } else {
+              alert('Invalid JSON file format.');
+            }
+          } catch (err) {
+            alert('Failed to parse JSON.');
+          }
+        };
+        reader.readAsText(file);
+      });
+    });
+  </script>
+</body>
+</html>
+
