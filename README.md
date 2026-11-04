@@ -1,58 +1,72 @@
-# Loom Video Script Generator (Local SEO Audit Edition)
+# Loom Video Script Generator & Client Audit Vault (Local SEO)
 
-A high-converting 2 to 3-minute Loom video pitch script generator with automatic Markdown (.md) audit parsing, interactive teleprompter, and client history vault.
+A complete Local SEO audit intelligence and 2 to 3-minute Loom video script generator with automatic Markdown (.md) parsing, teleprompter studio, and permanent client history vault.
 
----
-
-## 🚀 How to Use the Tool
-
-### Option 1: Interactive Browser Tool (Recommended)
-Double-click `index.html` to open it in any modern browser (Chrome, Edge, Brave, etc.):
-* **100% Offline & Local:** No servers or installation required.
-* **Drag-and-Drop .MD Files:** Drop any Local SEO Audit markdown report (like `Rhynehart Roofing Local Seo Audit Report.md`) directly into the dropzone. The tool will parse the business name, owner names, city, scores, geo-grid radius drop-off, website technical flaws, reviews, and competitors automatically!
-* **1-Click Rhynehart Demo:** Click **"⚡ Load Rhynehart Audit"** in the top bar to immediately inspect the live Rhynehart Roofing script.
-* **Teleprompter Studio:** Click **"Teleprompter Mode"** for a full-screen, high-contrast teleprompter with auto-scroll and font-size controls for effortless Loom recording.
-* **1-Click Copy & Export:**
-  - Copy Full Script (with on-screen visual cues and timestamps)
-  - Copy Spoken Voiceover Only
-  - Download as `.md` file
-* **Client History Vault:** Automatically saves past audited clients in browser LocalStorage, with search, restore, and JSON export/backup.
+* **Repository:** [https://github.com/icosalman/bright-local-loom-video](https://github.com/icosalman/bright-local-loom-video)
+* **Live Web App (via GitHub Pages):** `https://icosalman.github.io/bright-local-loom-video/`
 
 ---
 
-### Option 2: Command Line (Node.js CLI)
-You can also generate scripts directly from the terminal using Node.js:
+## 🗄️ Permanent Client Audit Storage System
 
+To ensure all past and present client audit data stays permanently saved and live:
+
+1. **Master Database (`clients_history.json`):**
+   * Stores all audited client profiles, location metrics, geo-grid findings, on-page flaws, and 4-phase growth plans in one standardized master JSON vault.
+   * Includes complete production data for **Rhynehart Roofing, Inc.** (Amarillo, TX).
+2. **Individual Client Audits (`clients/` folder):**
+   * Every client gets a dedicated markdown file inside `clients/` (e.g. `clients/rhynehart_roofing_amarillo.md`) containing their full audit summary, key findings, and spoken script.
+3. **Browser Vault & Teleprompter (`index.html`):**
+   * Automatically synchronizes with local storage.
+   * Offers 1-click **Backup JSON** and **Restore JSON** to migrate client history across devices without data loss.
+
+---
+
+## 🚀 How to Use the Studio
+
+### 1. Interactive Browser App (`index.html`)
+Double-click `index.html` to open it in any browser:
+* **Drag-and-Drop Any .MD Audit:** Drag any Local SEO audit markdown report into the dropzone to auto-extract business info, scores, 1-mile grid drop-offs, and technical flaws.
+* **1-Click Rhynehart Demo:** Click **"⚡ Load Rhynehart Audit"** in the top bar.
+* **Teleprompter Studio:** Full-screen high-contrast teleprompter with auto-scroll and font scaling for seamless Loom recording.
+* **1-Click Copy & Export:** Copy full script with visual cues, copy spoken-only words, or download as `.md`.
+
+### 2. Node.js Command Line Generator (`cli_generator.js`)
 ```bash
 # Generate script for Rhynehart Roofing
 node cli_generator.js "Rhynehart Roofing Local Seo Audit Report.md"
 
-# Generate script for any custom audit file
-node cli_generator.js "path/to/any_audit_report.md" "output_loom_script.md"
+# Generate script for any new client audit report
+node cli_generator.js "path/to/audit.md" "output_script.md"
 ```
 
 ---
 
-## 📁 Included Files in this Folder
+## ☁️ How to Push & Keep Data Always Live on GitHub
 
-| File | Purpose |
-| :--- | :--- |
-| **`index.html`** | The complete interactive single-page Web App & Loom Script Studio. |
-| **`cli_generator.js`** | Node.js automation script that parses markdown audits and writes Loom scripts to disk. |
-| **`Rhynehart Roofing Local Seo Audit Report.md`** | The comprehensive BrightLocal audit report for Rhynehart Roofing. |
-| **`Rhynehart_Roofing_Loom_Script.md`** | Pre-generated 2 to 3-minute production Loom script ready for recording. |
-| **`README.md`** | Documentation and usage instructions. |
+We have configured the Git repository and created a 1-click push script:
+
+### Method A: Double-Click `push_to_github.bat`
+1. Double-click **`push_to_github.bat`** in this folder.
+2. It automatically stages all new client `.md` files, updates `clients_history.json`, commits, and pushes to `https://github.com/icosalman/bright-local-loom-video`.
+
+### Method B: One-Time GitHub Authentication (10 Seconds)
+If you haven't authenticated GitHub CLI on your computer yet:
+1. Open PowerShell or Terminal and run:
+   ```bash
+   gh auth login
+   ```
+2. Select **GitHub.com** &rarr; **HTTPS** &rarr; **Login with a web browser**.
+3. Enter the one-time code shown in terminal and authorize.
+4. Run `git push -u origin main` or double-click `push_to_github.bat`. All files will be live on GitHub immediately!
 
 ---
 
-## ⏱️ Script Timing & Psychology Framework
+## 🌐 Enabling Free 24/7 Live Web Hosting (GitHub Pages)
 
-| Timestamp | Section | Visual Cue (What to Show on Screen) | Purpose |
-| :--- | :--- | :--- | :--- |
-| **0:00 - 0:20** | Personal Hook & Context | Webcam bubble over Google Business Profile 4.9★ rating | Build instant trust & establish local credibility. |
-| **0:20 - 0:55** | Rank Map Visibility Snapshot | BrightLocal Local Search Grid map (green shop vs red city) | Highlight lost revenue & competitor dominance. |
-| **0:55 - 1:35** | Website & Technical Audit | Chrome DevTools (0 H1s, duplicate page typo, missing address) | Show concrete, undeniable on-page flaws. |
-| **1:35 - 2:00** | Two Simple Reasons Rankings Drop | BrightLocal score (45/100) vs competitor content depth | Reframe problem as simple, solvable levers. |
-| **2:00 - 2:35** | 4-Phase Growth Roadmap | 4-Phase Roadmap graphic / action plan on screen | Present structured solution & agency expertise. |
-| **2:35 - 2:50** | Friendly, Zero-Pressure Close | Webcam + Calendar booking link on screen | Low-friction CTA for a 10-minute screen-share. |
-
+To make your Loom Script Builder accessible anywhere on the web:
+1. Go to your repository: [https://github.com/icosalman/bright-local-loom-video](https://github.com/icosalman/bright-local-loom-video)
+2. Click **Settings** &rarr; **Pages** (on the left menu).
+3. Under **Branch**, select `main` and `/ (root)`, then click **Save**.
+4. Within 1 minute, your tool is live at:  
+   👉 `https://icosalman.github.io/bright-local-loom-video/`
