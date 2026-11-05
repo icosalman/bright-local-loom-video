@@ -35,20 +35,26 @@
     }
   </script>
   <style>
+    @page {
+      margin: 10mm 12mm;
+      size: A4 portrait;
+    }
     @media print {
-      body { background: #ffffff !important; color: #0f172a !important; font-size: 12px; }
+      body {
+        background: #0b1120 !important;
+        color: #f1f5f9 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        font-size: 11px;
+      }
       .no-print { display: none !important; }
-      .page-break { page-break-before: always; break-before: page; }
-      .print-shadow-none { box-shadow: none !important; }
-      .print-border { border: 1px solid #cbd5e1 !important; }
       .page-container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+      .avoid-break { break-inside: avoid; page-break-inside: avoid; }
+      .clean-break { break-before: page; page-break-before: always; }
       a { text-decoration: none !important; color: inherit !important; }
     }
     .gradient-hero {
       background: linear-gradient(135deg, #0b1329 0%, #111e38 50%, #080d1a 100%);
-    }
-    .gradient-card {
-      background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%);
     }
     .badge-glow {
       box-shadow: 0 0 15px rgba(2, 132, 199, 0.35);
@@ -58,7 +64,7 @@
       align-items: center;
       gap: 0.35rem;
       padding: 0.2rem 0.65rem;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -93,19 +99,19 @@
   </div>
 
   <!-- MAIN DOCUMENT WRAPPER -->
-  <main class="page-container max-w-5xl mx-auto p-4 sm:p-8 lg:p-12 space-y-12">
+  <main class="page-container max-w-5xl mx-auto p-4 sm:p-8 lg:p-12 space-y-10">
 
     <!-- ================= COVER / HERO HEADER ================= -->
-    <header class="gradient-hero border border-slate-800 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-2xl">
+    <header class="gradient-hero border border-slate-800 rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-2xl avoid-break">
       <!-- Decorative background glow -->
       <div class="absolute -right-20 -top-20 w-80 h-80 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="relative z-10 space-y-6">
-        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800/80 pb-6">
+      <div class="relative z-10 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
           <div class="flex items-center gap-3">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/10 text-sky-400 border border-sky-500/30 uppercase tracking-widest font-mono">
-              CONFIDENTIAL AUDIT & PROPOSAL
+              CONFIDENTIAL STRATEGIC PROPOSAL
             </span>
             <span class="text-xs text-slate-400 font-mono">Amarillo, Texas Panhandle</span>
           </div>
@@ -115,109 +121,107 @@
           </div>
         </div>
 
-        <div class="space-y-3">
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        <div class="space-y-2">
+          <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
             Local Market Dominance &amp; <br />
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-300 to-amber-300">
-              Revenue Recovery Proposal
+              High-Intent Search Growth Proposal
             </span>
           </h1>
-          <p class="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
-            A comprehensive, evidence-based diagnostic of <strong>Rhynehart Roofing, Inc.</strong> across Google Search, Google Business Profile, and the Amarillo Geo-Grid — with an actionable 4-phase turnkey roadmap to capture high-ticket storm damage and roof replacement leads.
+          <p class="text-slate-300 text-xs sm:text-sm max-w-3xl leading-relaxed">
+            An evidence-based performance audit of <strong>Rhynehart Roofing, Inc.</strong> across Google Maps, local organic search, and generative AI engines — paired with an actionable 4-phase turnkey roadmap to capture untapped storm restoration and roof replacement demand across Amarillo.
           </p>
         </div>
 
         <!-- KEY STAT BAR -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
-          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4">
-            <span class="text-xs text-slate-400 uppercase font-mono block">Customer Trust</span>
-            <div class="text-2xl font-black text-emerald-400 mt-1 flex items-center gap-1.5">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-3.5">
+            <span class="text-[11px] text-slate-400 uppercase font-mono block">Customer Sentiment</span>
+            <div class="text-xl font-black text-emerald-400 mt-1 flex items-center gap-1.5">
               <span>4.9★</span>
               <span class="text-xs font-normal text-slate-400">(96 Google Reviews)</span>
             </div>
-            <span class="text-[11px] text-emerald-300/80 mt-1 block">René &amp; Dale Widely Praised</span>
+            <span class="text-[10px] text-emerald-300/80 mt-1 block">René &amp; Dale Highly Praised</span>
           </div>
 
-          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4">
-            <span class="text-xs text-slate-400 uppercase font-mono block">Overall Local Score</span>
-            <div class="text-2xl font-black text-amber-400 mt-1">45 <span class="text-sm font-normal text-slate-400">/ 100</span></div>
-            <span class="text-[11px] text-rose-400 mt-1 block font-semibold">Critical Deficit</span>
+          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-3.5">
+            <span class="text-[11px] text-slate-400 uppercase font-mono block">Overall Local Score</span>
+            <div class="text-xl font-black text-amber-400 mt-1">45 <span class="text-xs font-normal text-slate-400">/ 100</span></div>
+            <span class="text-[10px] text-amber-300 mt-1 block font-semibold">BrightLocal Location Diagnostic</span>
           </div>
 
-          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4">
-            <span class="text-xs text-slate-400 uppercase font-mono block">City-Wide Visibility</span>
-            <div class="text-2xl font-black text-rose-500 mt-1">16 <span class="text-sm font-normal text-slate-400">/ 100</span></div>
-            <span class="text-[11px] text-rose-400 mt-1 block font-semibold">84% Market Share Lost</span>
+          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-3.5">
+            <span class="text-[11px] text-slate-400 uppercase font-mono block">City Visibility Score</span>
+            <div class="text-xl font-black text-rose-500 mt-1">16 <span class="text-xs font-normal text-slate-400">/ 100</span></div>
+            <span class="text-[10px] text-rose-400 mt-1 block font-semibold">84-Point Visibility Gap</span>
           </div>
 
-          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4">
-            <span class="text-xs text-slate-400 uppercase font-mono block">Local AI Visibility</span>
-            <div class="text-2xl font-black text-indigo-400 mt-1">6 <span class="text-sm font-normal text-slate-400">/ 100</span></div>
-            <span class="text-[11px] text-indigo-300 mt-1 block font-semibold">0% Google AI Overview</span>
+          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-3.5">
+            <span class="text-[11px] text-slate-400 uppercase font-mono block">Local AI Visibility</span>
+            <div class="text-xl font-black text-indigo-400 mt-1">6 <span class="text-xs font-normal text-slate-400">/ 100</span></div>
+            <span class="text-[10px] text-indigo-300 mt-1 block font-semibold">0% Google AI Overview</span>
           </div>
         </div>
 
-        <div class="text-xs text-slate-400 flex flex-wrap items-center gap-4 pt-2 font-mono">
-          <span>Target Website: <a href="https://www.rhynehart.com" target="_blank" class="text-sky-400 underline">rhynehart.com</a></span>
+        <div class="text-[11px] text-slate-400 flex flex-wrap items-center gap-3 pt-1 font-mono">
+          <span>Target Website: <a href="https://www.rhynehart.com" target="_blank" class="text-sky-400 underline">rhynehart.com</a> (Est. 1986 &bull; Domain Active 2003)</span>
           <span>&bull;</span>
           <span>Address: 6900 W McCormick Rd, Amarillo, TX 79118</span>
-          <span>&bull;</span>
-          <span>Phone: (806) 622-0090</span>
         </div>
       </div>
     </header>
 
 
     <!-- ================= SECTION 1: THE CORE BOTTLENECK ================= -->
-    <section class="space-y-6">
+    <section class="space-y-4 avoid-break">
       <div class="flex items-center gap-3">
-        <span class="w-8 h-8 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center font-bold text-sm font-mono">01</span>
+        <span class="w-7 h-7 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center font-bold text-xs font-mono">01</span>
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">The Amarillo "1-Mile Trap" &amp; Lost Revenue Reality</h2>
-          <p class="text-xs text-slate-400">Why your stellar reputation isn't converting into city-wide phone calls</p>
+          <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">The Amarillo "1-Mile Barrier" &amp; Visibility Gap</h2>
+          <p class="text-xs text-slate-400">Why a stellar 4.9★ reputation isn't translating into city-wide inbound calls</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         
         <!-- TEXT DIAGNOSTIC -->
-        <div class="lg:col-span-5 space-y-4">
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
-            <h3 class="text-base font-bold text-slate-100 flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></span>
-              The Problem in Plain Numbers
+        <div class="lg:col-span-5 space-y-3">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2.5">
+            <h3 class="text-sm font-bold text-slate-100 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+              The Geo-Grid Cliff in Numbers
             </h3>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Rhynehart Roofing has operated since 1986 with a pristine <strong>4.9★ rating</strong>. Yet, when homeowners across Amarillo search for <em>"Roofing contractor Amarillo tx"</em> or <em>"Emergency roof repair near me"</em>, your business is virtually invisible.
+              With a <strong>nearly 40-year history since 1986</strong> and a pristine <strong>4.9★ rating</strong>, Rhynehart possesses unmatched local trust. However, Google's map algorithms currently confine your visibility to a narrow perimeter around your physical shop.
             </p>
             <div class="bg-rose-500/10 border border-rose-500/20 rounded-xl p-3 text-xs text-rose-300 space-y-1">
-              <div class="font-bold">The Geo-Grid Cliff:</div>
-              <div>&bull; <strong>Within 1 Mile (McCormick Rd):</strong> Rank #1 to #3 (Green)</div>
-              <div>&bull; <strong>Central Amarillo (Downtown, Wolflin):</strong> Rank #15 to #24 (Red)</div>
+              <div class="font-bold">Geo-Grid Breakdown (Roofing Contractor Amarillo TX):</div>
+              <div>&bull; <strong>Within 1 Mile (McCormick Rd / 79118):</strong> Rank #1 to #3 (Green)</div>
+              <div>&bull; <strong>Central Amarillo (Downtown, Wolflin):</strong> Rank #15 to #24 (Drop-off)</div>
               <div>&bull; <strong>North &amp; West Amarillo (Soncy, Medical Ctr):</strong> Rank #26 to #50+ (Invisible)</div>
             </div>
             <p class="text-xs text-slate-400 leading-relaxed">
-              Competitors like <strong>TRX Roofing (Avg Rank 1.9)</strong>, <strong>Andrus Brothers (3.7)</strong>, <strong>Accent Roofing (5.0)</strong>, and <strong>Roof Smith (8.7)</strong> are taking <strong>85%+ of high-ticket storm insurance replacements</strong> solely because they dominate those map pins.
+              High-ticket storm replacements across higher-density areas are heavily captured by competitors who dominate the Map Pack: <strong>TRX Roofing (Avg Rank 1.9)</strong>, <strong>Andrus Brothers (3.7)</strong>, <strong>Accent Roofing (5.0)</strong>, and <strong>Roof Smith (8.7)</strong>.
             </p>
           </div>
 
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2">
             <span class="evidence-tag bg-amber-500/10 text-amber-400 border border-amber-500/30">Official BrightLocal Audit Score</span>
-            <div class="pt-2">
+            <div class="pt-1">
               <img src="./assets/brightlocal_scores.png" alt="BrightLocal Executive Audit Scores" class="w-full rounded-xl border border-slate-700 shadow-lg object-cover" />
             </div>
-            <p class="text-[11px] text-slate-400 font-mono mt-1 text-center">Verified BrightLocal Location Audit ID #4191821</p>
+            <p class="text-[10px] text-slate-400 font-mono text-center">Verified BrightLocal Location Audit ID #4191821</p>
           </div>
         </div>
 
         <!-- AUTHENTIC SCREENSHOT: LOCAL SEARCH GRID -->
-        <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2.5">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
             <div class="flex items-center gap-2">
               <span class="evidence-tag bg-rose-500/10 text-rose-400 border border-rose-500/30">Authentic Visual Evidence</span>
               <span class="text-xs font-bold text-white font-mono">Local Search Grid (LSG)</span>
             </div>
-            <span class="text-xs text-slate-400 font-mono">Query: "Roofing contractor Amarillo tx"</span>
+            <span class="text-[11px] text-slate-400 font-mono">Query: "Roofing contractor Amarillo tx"</span>
           </div>
 
           <div class="rounded-xl overflow-hidden border border-slate-700 shadow-xl bg-slate-950">
@@ -225,17 +229,17 @@
           </div>
 
           <div class="grid grid-cols-3 gap-2 pt-1 text-center text-xs font-mono">
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
               <span class="text-slate-400 block text-[10px]">Average Rank</span>
-              <span class="text-amber-400 font-bold text-base">9.2</span>
+              <span class="text-amber-400 font-bold text-sm">9.2</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+            <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
               <span class="text-slate-400 block text-[10px]">Top-3 Pack Share</span>
-              <span class="text-rose-400 font-bold text-base">Only 10%</span>
+              <span class="text-rose-400 font-bold text-sm">Only 10%</span>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-              <span class="text-slate-400 block text-[10px]">Market Opportunity</span>
-              <span class="text-emerald-400 font-bold text-base">+84% Growth</span>
+            <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+              <span class="text-slate-400 block text-[10px]">Search Opportunity</span>
+              <span class="text-emerald-400 font-bold text-sm">High-Growth Gap</span>
             </div>
           </div>
         </div>
@@ -245,118 +249,118 @@
 
 
     <!-- ================= SECTION 2: TECHNICAL UNFORCED ERRORS ================= -->
-    <section class="space-y-6 page-break pt-4">
+    <section class="space-y-4 clean-break pt-2">
       <div class="flex items-center gap-3">
-        <span class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-sm font-mono">02</span>
+        <span class="w-7 h-7 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-xs font-mono">02</span>
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Website Technical Audit: 4 Critical Unforced Errors</h2>
-          <p class="text-xs text-slate-400">Specific on-page issues actively killing Google's confidence in rhynehart.com</p>
+          <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">Website Technical Audit: 4 Key On-Page Issues</h2>
+          <p class="text-xs text-slate-400">Identified on-page friction points currently reducing Google's topical clarity on rhynehart.com</p>
         </div>
       </div>
 
       <!-- 2X2 INFOGRAPHIC GRID OF FLAWS WITH EVIDENCE -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
         <!-- FLAW 1: ZERO H1 TAGS -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
-          <div class="space-y-2">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2.5 flex flex-col justify-between avoid-break">
+          <div class="space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="evidence-tag bg-rose-500/10 text-rose-400 border border-rose-500/30">Defect #1 &bull; Critical</span>
-              <span class="text-xs font-mono text-slate-400">H1 Hierarchy</span>
+              <span class="text-[11px] font-mono text-slate-400">Heading Hierarchy</span>
             </div>
-            <h3 class="text-base font-bold text-white">Zero H1 Headings on Entire Site</h3>
+            <h3 class="text-sm font-bold text-white">Missing H1 Headings Weakens Hierarchy</h3>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Google crawlers require an <code>&lt;h1&gt;</code> to understand a website's primary service and location. Your homepage has <strong>0 H1 tags</strong>, jumping directly to 5 unoptimized H2 tags. Google cannot determine what you want to rank for.
+              Missing <code>&lt;h1&gt;</code> headings weaken the page's topical hierarchy and reduce clarity around its primary service and geographic focus. The homepage has <strong>0 H1 tags</strong>, transitioning directly into 5 unoptimized H2 tags.
             </p>
           </div>
-          <div class="space-y-2 pt-2">
+          <div class="space-y-1.5 pt-1">
             <div class="rounded-xl overflow-hidden border border-slate-700 bg-slate-950">
               <img src="./assets/missing_h1_evidence.png" alt="DevTools DOM inspection proving 0 H1 tags" class="w-full object-cover" />
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] text-slate-400 font-mono">
-              <span class="text-emerald-400 font-bold">&check; Our Solution:</span> Inject single, high-intent H1: <em>"Amarillo Roofing Contractor &amp; Storm Damage Restoration"</em>.
+            <div class="bg-slate-950 p-2 rounded-lg border border-slate-800 text-[10px] text-slate-400 font-mono">
+              <span class="text-emerald-400 font-bold">&check; Recommended Fix:</span> Implement single, clear H1: <em>"Amarillo Roofing Contractor &amp; Storm Damage Restoration"</em>.
             </div>
           </div>
         </div>
 
         <!-- FLAW 2: ACCIDENTAL WIX CLONE & TYPO -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
-          <div class="space-y-2">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2.5 flex flex-col justify-between avoid-break">
+          <div class="space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="evidence-tag bg-rose-500/10 text-rose-400 border border-rose-500/30">Defect #2 &bull; High</span>
-              <span class="text-xs font-mono text-slate-400">URL Hygiene</span>
+              <span class="text-[11px] font-mono text-slate-400">URL Hygiene</span>
             </div>
             <h3 class="text-base font-bold text-white">Indexed Duplicate Page &amp; Title Typo</h3>
             <p class="text-xs text-slate-300 leading-relaxed">
-              An accidental Wix clone URL (<code>/copy-of-services</code>) is live and indexed on Google. Worse, its HTML title tag contains a blatant misspelling: <em>"Rhynehart Roofing | Amarillo, Texas | <strong>Sevices</strong>"</em>. This cannibalizes your rankings.
+              An accidental duplicate clone URL (<code>/copy-of-services</code>) is live and indexed in Google search. Its HTML title tag contains a spelling typo: <em>"Rhynehart Roofing | Amarillo, Texas | <strong>Sevices</strong>"</em>, which dilutes topical authority.
             </p>
           </div>
-          <div class="space-y-2 pt-2">
+          <div class="space-y-1.5 pt-1">
             <div class="rounded-xl overflow-hidden border border-slate-700 bg-slate-950">
               <img src="./assets/duplicate_page_typo.png" alt="Duplicate copy of services page with title typo" class="w-full object-cover" />
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] text-slate-400 font-mono">
-              <span class="text-emerald-400 font-bold">&check; Our Solution:</span> 301 Permanent Redirect to <code>/services</code>, fix title tags, purge orphan URL from Google index.
+            <div class="bg-slate-950 p-2 rounded-lg border border-slate-800 text-[10px] text-slate-400 font-mono">
+              <span class="text-emerald-400 font-bold">&check; Recommended Fix:</span> 301 Permanent Redirect to <code>/services</code>, correct title tag, and remove duplicate from index.
             </div>
           </div>
         </div>
 
         <!-- FLAW 3: NAP CONFLICT & MISSING FOOTER ADDRESS -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
-          <div class="space-y-2">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2.5 flex flex-col justify-between avoid-break">
+          <div class="space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="evidence-tag bg-amber-500/10 text-amber-400 border border-amber-500/30">Defect #3 &bull; Critical</span>
-              <span class="text-xs font-mono text-slate-400">NAP Consistency</span>
+              <span class="text-[11px] font-mono text-slate-400">NAP Alignment</span>
             </div>
-            <h3 class="text-base font-bold text-white">Severe NAP Discrepancy (79114 vs 79118)</h3>
+            <h3 class="text-base font-bold text-white">Address Mismatch (79114 vs 79118)</h3>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Your Google Business Profile is located at <strong>79118</strong>. However, your website's <code>/contact</code> page lists <strong>79114</strong> with a P.O. Box, and your site-wide footer completely lacks a street address and click-to-call links.
+              Your Google Business Profile is registered at <strong>79118</strong>. However, the website's <code>/contact</code> page displays <strong>79114</strong> with a P.O. Box, and the site-wide footer lacks a crawlable physical address block and click-to-call link.
             </p>
           </div>
-          <div class="space-y-2 pt-2">
+          <div class="space-y-1.5 pt-1">
             <div class="grid grid-cols-2 gap-2">
               <div class="rounded-xl overflow-hidden border border-slate-700">
-                <img src="./assets/contact_address_discrepancy.png" alt="Contact page address conflict" class="w-full h-28 object-cover" />
+                <img src="./assets/contact_address_discrepancy.png" alt="Contact page address conflict" class="w-full h-24 object-cover" />
               </div>
               <div class="rounded-xl overflow-hidden border border-slate-700">
-                <img src="./assets/footer_missing_nap.png" alt="Footer missing address and tel link" class="w-full h-28 object-cover" />
+                <img src="./assets/footer_missing_nap.png" alt="Footer missing address and tel link" class="w-full h-24 object-cover" />
               </div>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] text-slate-400 font-mono">
-              <span class="text-emerald-400 font-bold">&check; Our Solution:</span> Standardize exact corporate NAP in footer, add <code>tel:+18066220090</code>, and inject LocalBusiness Schema.
+            <div class="bg-slate-950 p-2 rounded-lg border border-slate-800 text-[10px] text-slate-400 font-mono">
+              <span class="text-emerald-400 font-bold">&check; Recommended Fix:</span> Standardize exact corporate NAP in footer, format phone with <code>tel:</code>, and deploy LocalBusiness Schema.
             </div>
           </div>
         </div>
 
         <!-- FLAW 4: THIN CONTENT & SPEED -->
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 flex flex-col justify-between">
-          <div class="space-y-2">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2.5 flex flex-col justify-between avoid-break">
+          <div class="space-y-1.5">
             <div class="flex items-center justify-between">
               <span class="evidence-tag bg-amber-500/10 text-amber-400 border border-amber-500/30">Defect #4 &bull; High</span>
-              <span class="text-xs font-mono text-slate-400">Topical Authority</span>
+              <span class="text-[11px] font-mono text-slate-400">Content Depth</span>
             </div>
-            <h3 class="text-base font-bold text-white">Thin Content Deficit &amp; Speed Bottleneck</h3>
+            <h3 class="text-base font-bold text-white">Limited Service Content &amp; Mobile Speed</h3>
             <p class="text-xs text-slate-300 leading-relaxed">
-              Your entire services page has only <strong>399 words</strong> (site average 317 words). Top competitors have 30+ dedicated landing pages for hail damage, commercial TPO, and drone inspections. Mobile PageSpeed sits at <strong>55/100</strong> with 53 missing image alt tags.
+              The services page contains only <strong>399 words</strong> (site average 317 words), limiting its ability to rank for specialized commercial and storm queries. Mobile PageSpeed scores <strong>55/100</strong>, with 53 images missing descriptive alt tags.
             </p>
           </div>
-          <div class="space-y-2 pt-2">
-            <div class="rounded-xl overflow-hidden border border-slate-700 bg-slate-950 p-4 font-mono text-xs space-y-2">
-              <div class="flex justify-between border-b border-slate-800 pb-1.5">
-                <span class="text-slate-400">Services Word Count:</span>
-                <span class="text-rose-400 font-bold">399 words (Sparse)</span>
+          <div class="space-y-1.5 pt-1">
+            <div class="rounded-xl overflow-hidden border border-slate-700 bg-slate-950 p-3 font-mono text-xs space-y-1.5">
+              <div class="flex justify-between border-b border-slate-800 pb-1">
+                <span class="text-slate-400 text-[11px]">Services Word Count:</span>
+                <span class="text-rose-400 font-bold text-[11px]">399 words (Sparse)</span>
               </div>
-              <div class="flex justify-between border-b border-slate-800 pb-1.5">
-                <span class="text-slate-400">Mobile PageSpeed:</span>
-                <span class="text-amber-400 font-bold">55 / 100</span>
+              <div class="flex justify-between border-b border-slate-800 pb-1">
+                <span class="text-slate-400 text-[11px]">Mobile PageSpeed:</span>
+                <span class="text-amber-400 font-bold text-[11px]">55 / 100</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-slate-400">Images Missing Alt Tags:</span>
-                <span class="text-rose-400 font-bold">53 of 70 (75.7%)</span>
+                <span class="text-slate-400 text-[11px]">Images Missing Alt Text:</span>
+                <span class="text-rose-400 font-bold text-[11px]">53 of 70 (75.7%)</span>
               </div>
             </div>
-            <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-[11px] text-slate-400 font-mono">
-              <span class="text-emerald-400 font-bold">&check; Our Solution:</span> Deploy 6 dedicated 800+ word service landing pages, compress images, and optimize script loading.
+            <div class="bg-slate-950 p-2 rounded-lg border border-slate-800 text-[10px] text-slate-400 font-mono">
+              <span class="text-emerald-400 font-bold">&check; Recommended Fix:</span> Expand into 6 dedicated 800+ word landing pages, compress images, and write descriptive alt tags.
             </div>
           </div>
         </div>
@@ -365,22 +369,22 @@
     </section>
 
 
-    <!-- ================= SECTION 3: GBP & AI SEARCH DEFICIT ================= -->
-    <section class="space-y-6 page-break pt-4">
+    <!-- ================= SECTION 3: GBP & AI SEARCH OPPORTUNITIES ================= -->
+    <section class="space-y-4 clean-break pt-2">
       <div class="flex items-center gap-3">
-        <span class="w-8 h-8 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 flex items-center justify-center font-bold text-sm font-mono">03</span>
+        <span class="w-7 h-7 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 flex items-center justify-center font-bold text-xs font-mono">03</span>
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Google Business Profile &amp; AI Search Opportunities</h2>
-          <p class="text-xs text-slate-400">Capitalizing on your 4.9★ reputation to capture storm damage phone calls</p>
+          <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">Google Business Profile &amp; AI Visibility Strategy</h2>
+          <p class="text-xs text-slate-400">Positioning your exceptional reputation to capture modern search and AI recommendations</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         
         <!-- GBP PROFILE SCREENSHOT -->
-        <div class="lg:col-span-6 bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <span class="evidence-tag bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">GBP Asset Verified</span>
+        <div class="lg:col-span-6 bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3 avoid-break">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="evidence-tag bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Verified GBP Asset</span>
             <span class="text-xs text-slate-400 font-mono">Google Knowledge Panel</span>
           </div>
 
@@ -389,54 +393,54 @@
           </div>
 
           <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 text-xs text-emerald-300">
-            <strong>Unmatched Customer Sentiment:</strong> 4.9★ rating with 96 reviews. Reviewers specifically highlight René Montoya and Dale Orr for transparency, responsiveness, and walking them through insurance adjustments without pushy sales.
+            <strong>Strong Customer Trust Foundation:</strong> 4.9★ rating across 96 Google reviews. Customers specifically praise René Montoya and Dale Orr for responsiveness, thoroughness, and transparent guidance through insurance claims without aggressive upselling.
           </div>
         </div>
 
         <!-- GBP GAPS & AI MATRIX -->
-        <div class="lg:col-span-6 space-y-4">
-          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
-            <h3 class="text-base font-bold text-slate-100">Where Competitors Gain the Edge:</h3>
+        <div class="lg:col-span-6 space-y-3 avoid-break">
+          <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2.5">
+            <h3 class="text-sm font-bold text-slate-100">Profile Optimization Opportunities:</h3>
             
             <div class="space-y-2 text-xs">
-              <div class="flex items-start gap-2.5 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                <span class="text-rose-400 font-bold shrink-0">&times;</span>
+              <div class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                <span class="text-amber-400 font-bold shrink-0">&bull;</span>
                 <div>
-                  <strong class="text-slate-200">Photo Library Deficit:</strong> Rhynehart has only <strong>33 photos</strong>. Direct competitors have 100+ (Accent: 104 photos, Ortiz: 120 photos, Morgan &amp; Myers: 68 photos).
+                  <strong class="text-slate-200">Visual Portfolio Expansion:</strong> Rhynehart currently has <strong>33 photos</strong>. Leading competitors maintain richer photo galleries (Accent: 104, Ortiz: 120, Morgan &amp; Myers: 68). Adding authentic before-and-afters increases click-through rates.
                 </div>
               </div>
 
-              <div class="flex items-start gap-2.5 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                <span class="text-rose-400 font-bold shrink-0">&times;</span>
+              <div class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                <span class="text-amber-400 font-bold shrink-0">&bull;</span>
                 <div>
-                  <strong class="text-slate-200">Underutilized Secondary Categories:</strong> Currently only has <em>Roofing contractor</em> and <em>Siding contractor</em>. Missing: <em>Gutter service</em>, <em>Construction Company</em>, <em>Repair service</em>.
+                  <strong class="text-slate-200">Secondary Category Alignment:</strong> Currently configured only with <em>Roofing contractor</em> and <em>Siding contractor</em>. Adding relevant secondary categories like <em>Gutter service</em> and <em>Repair service</em> broadens category relevance.
                 </div>
               </div>
 
-              <div class="flex items-start gap-2.5 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                <span class="text-rose-400 font-bold shrink-0">&times;</span>
+              <div class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                <span class="text-amber-400 font-bold shrink-0">&bull;</span>
                 <div>
-                  <strong class="text-slate-200">Zero Lead Attribution (UTM):</strong> Website link lacks UTM tagging (<code>?utm_source=google&amp;utm_medium=gbp</code>), leaving management blind to exact calls and quote requests coming from Google Maps.
+                  <strong class="text-slate-200">Conversion &amp; Attribution Tracking:</strong> The website link lacks UTM campaign parameters (<code>?utm_source=google&amp;utm_medium=gbp</code>), making it difficult to measure exact calls and form inquiries generated by Google Maps.
                 </div>
               </div>
 
-              <div class="flex items-start gap-2.5 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                <span class="text-rose-400 font-bold shrink-0">&times;</span>
+              <div class="flex items-start gap-2 bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                <span class="text-amber-400 font-bold shrink-0">&bull;</span>
                 <div>
-                  <strong class="text-slate-200">Citation Gaps on Tier-1 Directories:</strong> Missing claimed profiles on <strong>Angi (DA 86)</strong> and <strong>BuildZoom (DA 60)</strong>, which Google AI heavily references.
+                  <strong class="text-slate-200">High-Authority Directory Gaps:</strong> Claimed listings on high-authority contractor networks like <strong>Angi (DA 86)</strong> and <strong>BuildZoom (DA 60)</strong> help reinforce overall prominence.
                 </div>
               </div>
             </div>
           </div>
 
           <!-- AI VISIBILITY INSIGHT -->
-          <div class="bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-800/40 rounded-2xl p-5 space-y-2.5">
+          <div class="bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-900 border border-indigo-800/40 rounded-2xl p-4 space-y-2">
             <div class="flex items-center justify-between">
               <span class="text-xs font-bold text-indigo-300 uppercase tracking-wider font-mono">Generative AI Search Visibility</span>
               <span class="text-xs font-bold text-rose-400 font-mono">Current Score: 6 / 100</span>
             </div>
             <p class="text-xs text-slate-300 leading-relaxed">
-              When Amarillo homeowners ask ChatGPT or Google AI Overview: <em>"Find a licensed contractor for hail or storm leak repair"</em>, AI engines recommend <strong>Roof Smith</strong> (57% mention rate) and <strong>Accent Roofing</strong> (36%). Rhynehart is mentioned <strong>0% of the time</strong> because the site lacks structured storm restoration content and RCAT licensing citations.
+              When homeowners query AI search engines (such as Google AI Overview or ChatGPT) for <em>"licensed roofing contractor for hail damage inspection in Amarillo"</em>, AI models cite competitors who have dedicated storm damage content, insurance claims guides, and structured Q&amp;A schemas. Building these topic clusters will unlock this emerging traffic channel.
             </p>
           </div>
         </div>
@@ -446,114 +450,114 @@
 
 
     <!-- ================= SECTION 4: 4-PHASE GROWTH ROADMAP ================= -->
-    <section class="space-y-6 page-break pt-4">
+    <section class="space-y-4 clean-break pt-2">
       <div class="flex items-center gap-3">
-        <span class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-sm font-mono">04</span>
+        <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-xs font-mono">04</span>
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Our 4-Phase Turnkey Execution Plan</h2>
-          <p class="text-xs text-slate-400">Step-by-step deliverables to fix technical leaks and expand map rankings city-wide</p>
+          <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">Our 4-Phase Turnkey Execution Roadmap</h2>
+          <p class="text-xs text-slate-400">A structured, systematic delivery schedule to resolve technical issues and expand map reach</p>
         </div>
       </div>
 
       <!-- ROADMAP INFOGRAPHIC TIMELINE -->
-      <div class="space-y-4">
+      <div class="space-y-3.5">
 
         <!-- PHASE 1 -->
-        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 transition flex flex-col md:flex-row gap-6 items-start">
-          <div class="md:w-56 shrink-0 space-y-1">
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-400 border border-sky-500/30 font-mono uppercase">Month 1 &bull; Immediate</span>
-            <h3 class="text-lg font-extrabold text-white">Phase 1: Foundation &amp; Technical Hygiene</h3>
-            <span class="text-xs text-slate-400 block font-mono">Zero Error Baseline</span>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 transition flex flex-col md:flex-row gap-4 items-start avoid-break">
+          <div class="md:w-52 shrink-0 space-y-0.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-400 border border-sky-500/30 font-mono uppercase">Month 1 &bull; Immediate</span>
+            <h3 class="text-base font-extrabold text-white">Phase 1: Foundation &amp; Technical Setup</h3>
+            <span class="text-[11px] text-slate-400 block font-mono">Core Health Realignment</span>
           </div>
-          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Heading Tag Architecture</strong>
-              <span class="text-slate-400">Implement single, keyword-optimized <code>&lt;h1&gt;</code> on homepage and service pages; reorganize subheadings into clean H2/H3 hierarchy.</span>
+          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Heading Tag Realignment</strong>
+              <span class="text-slate-400 text-[11px]">Implement single, optimized <code>&lt;h1&gt;</code> on homepage and service pages; organize subheadings into clean H2/H3 structure.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; URL Cleanup &amp; 301 Redirect</strong>
-              <span class="text-slate-400">301 permanent redirect <code>/copy-of-services</code> to <code>/services</code>, fix title typo ("Sevices"), and purge orphan from Google index.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; URL Cleanup &amp; 301 Redirect</strong>
+              <span class="text-slate-400 text-[11px]">Set up permanent 301 redirect from <code>/copy-of-services</code> to <code>/services</code>, fix title typo, and remove duplicate from index.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Complete NAP &amp; Click-to-Call</strong>
-              <span class="text-slate-400">Hardcode exact corporate NAP in footer and contact page; hyperlink all phone numbers with mobile <code>tel:+18066220090</code>.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Standardized NAP &amp; Click-to-Call</strong>
+              <span class="text-slate-400 text-[11px]">Add crawlable corporate NAP in the global footer and contact page; format all phone numbers with mobile click-to-call.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; JSON-LD Schema &amp; Speed Boost</strong>
-              <span class="text-slate-400">Inject full <code>RoofingContractor</code> structured data (geo-coordinates, hours, reviews); compress images &amp; add 53 missing alt tags.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Schema Markup &amp; Image Alt Tags</strong>
+              <span class="text-slate-400 text-[11px]">Deploy complete <code>RoofingContractor</code> JSON-LD schema (geo-coordinates, hours, reviews); add descriptive alt text to all 53 images.</span>
             </div>
           </div>
         </div>
 
         <!-- PHASE 2 -->
-        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 transition flex flex-col md:flex-row gap-6 items-start">
-          <div class="md:w-56 shrink-0 space-y-1">
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 font-mono uppercase">Month 1&ndash;2</span>
-            <h3 class="text-lg font-extrabold text-white">Phase 2: High-Converting Service Hubs</h3>
-            <span class="text-xs text-slate-400 block font-mono">Break Out of 79118</span>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 transition flex flex-col md:flex-row gap-4 items-start avoid-break">
+          <div class="md:w-52 shrink-0 space-y-0.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30 font-mono uppercase">Month 1&ndash;2</span>
+            <h3 class="text-base font-extrabold text-white">Phase 2: Service Hubs &amp; Local Expansion</h3>
+            <span class="text-[11px] text-slate-400 block font-mono">Geographic Reach</span>
           </div>
-          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; 6 Dedicated Service Pages (800+ Words)</strong>
-              <span class="text-slate-400">Deploy high-intent pages: <em>Residential Roof Replacement</em>, <em>Emergency Leak Repair</em>, <em>Hail &amp; Wind Storm Restoration</em>, <em>Commercial TPO &amp; Metal</em>, <em>Free Drone Inspections</em>.</span>
+          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; 6 Dedicated Service Pages</strong>
+              <span class="text-slate-400 text-[11px]">Build comprehensive landing pages: <em>Residential Roof Replacement</em>, <em>Emergency Leak Repair</em>, <em>Hail Damage Restoration</em>, <em>Commercial TPO &amp; Metal</em>, <em>Free Drone Inspections</em>.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Insurance Claim Negotiation Landing Page</strong>
-              <span class="text-slate-400">Spotlight René Montoya and Dale Orr’s established expertise in meeting adjusters on-site and managing carrier paperwork without surprise out-of-pocket costs.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Insurance Claim Negotiation Page</strong>
+              <span class="text-slate-400 text-[11px]">Spotlight René Montoya and Dale Orr’s established reputation in assisting adjusters on-site and guiding homeowners through insurance paperwork.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Hyperlocal Neighborhood Hubs</strong>
-              <span class="text-slate-400">Build dedicated sub-pages covering high-income Amarillo growth areas: <strong>Canyon, Bushland, Wolflin, Puckett, Western Plateau, and Soncy</strong>.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Hyperlocal Area Hubs</strong>
+              <span class="text-slate-400 text-[11px]">Build localized area pages covering key growth neighborhoods: <strong>Canyon, Bushland, Wolflin, Puckett, Western Plateau, and Soncy</strong>.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Conversion Rate Optimization (CRO)</strong>
-              <span class="text-slate-400">Embed 3–5 glowing customer review callouts and BBB A+ trust badges directly alongside quote forms for immediate quote conversion.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Quote Conversion Elements</strong>
+              <span class="text-slate-400 text-[11px]">Position authentic review callouts and BBB A+ credentials adjacent to quote forms to maximize visitor-to-lead conversion.</span>
             </div>
           </div>
         </div>
 
         <!-- PHASE 3 -->
-        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 transition flex flex-col md:flex-row gap-6 items-start">
-          <div class="md:w-56 shrink-0 space-y-1">
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono uppercase">Month 2&ndash;3</span>
-            <h3 class="text-lg font-extrabold text-white">Phase 3: GBP &amp; Citation Authority</h3>
-            <span class="text-xs text-slate-400 block font-mono">Local 3-Pack Dominance</span>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 transition flex flex-col md:flex-row gap-4 items-start avoid-break">
+          <div class="md:w-52 shrink-0 space-y-0.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-mono uppercase">Month 2&ndash;3</span>
+            <h3 class="text-base font-extrabold text-white">Phase 3: GBP &amp; Citation Authority</h3>
+            <span class="text-[11px] text-slate-400 block font-mono">Map Pack Elevation</span>
           </div>
-          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Secondary Categories &amp; Service Catalog</strong>
-              <span class="text-slate-400">Activate secondary categories (<em>Gutter service</em>, <em>Construction Company</em>, <em>Repair service</em>); build out itemized service cards matching search terms.</span>
+          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Secondary Categories &amp; Service Catalog</strong>
+              <span class="text-slate-400 text-[11px]">Configure secondary categories (<em>Gutter service</em>, <em>Repair service</em>); build out itemized service cards matching search intent.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Geo-Tagged Photo Expansion</strong>
-              <span class="text-slate-400">Upload 50+ high-resolution, geo-tagged photos of Amarillo job sites, completed roofs, and branded trucks to outpace competitors.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Project Photo Portfolio</strong>
+              <span class="text-slate-400 text-[11px]">Upload 50+ authentic, high-quality project photos showcasing completed roofs, local Amarillo job sites, team members, and branded vehicles.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Claim &amp; Standardize Tier-1 Citations</strong>
-              <span class="text-slate-400">Claim and verify missing high-authority listings on <strong>Angi (DA 86)</strong>, <strong>BuildZoom (DA 60)</strong>, Facebook Business, and BBB to synchronize NAP.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Tier-1 Citation Verification</strong>
+              <span class="text-slate-400 text-[11px]">Claim and verify profiles on <strong>Angi (DA 86)</strong>, <strong>BuildZoom (DA 60)</strong>, and Facebook Business to ensure consistent NAP authority.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; GA4 UTM Lead Attribution Tracking</strong>
-              <span class="text-slate-400">Tag GBP website and booking links with campaign UTMs to provide management with transparent weekly call &amp; form lead counts.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; GA4 UTM Lead Attribution Tracking</strong>
+              <span class="text-slate-400 text-[11px]">Tag GBP website and booking links with campaign UTMs to provide leadership with transparent weekly call &amp; form lead counts.</span>
             </div>
           </div>
         </div>
 
         <!-- PHASE 4 -->
-        <div class="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-6 transition flex flex-col md:flex-row gap-6 items-start">
-          <div class="md:w-56 shrink-0 space-y-1">
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 font-mono uppercase">Ongoing</span>
-            <h3 class="text-lg font-extrabold text-white">Phase 4: GEO &amp; Review Funnel Engine</h3>
-            <span class="text-xs text-slate-400 block font-mono">Future-Proof AI Leads</span>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 transition flex flex-col md:flex-row gap-4 items-start avoid-break">
+          <div class="md:w-52 shrink-0 space-y-0.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 font-mono uppercase">Ongoing</span>
+            <h3 class="text-base font-extrabold text-white">Phase 4: GEO &amp; Review Funnel Engine</h3>
+            <span class="text-[11px] text-slate-400 block font-mono">Future-Proof AI Search</span>
           </div>
-          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Generative Engine Optimization (GEO)</strong>
-              <span class="text-slate-400">Deploy FAQ structured schemas answering insurance and storm damage questions to position Rhynehart as ChatGPT &amp; Google AI’s top cited contractor.</span>
+          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Generative Engine Optimization (GEO)</strong>
+              <span class="text-slate-400 text-[11px]">Implement structured FAQ schemas answering storm damage and insurance questions to help AI models cite Rhynehart as a trusted source.</span>
             </div>
-            <div class="bg-slate-950 p-3 rounded-xl border border-slate-800/80">
-              <strong class="text-slate-200 block mb-1">&check; Keyword-Targeted Review Automation</strong>
-              <span class="text-slate-400">Implement post-job SMS prompts guiding homeowners to mention specific services (*"hail damage repair"*, *"new roof replacement"*) in Google reviews.</span>
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800/80">
+              <strong class="text-slate-200 block mb-0.5">&check; Review Request System</strong>
+              <span class="text-slate-400 text-[11px]">Implement a post-job review request system encouraging satisfied customers to share detailed, authentic feedback about their roof replacement experience.</span>
             </div>
           </div>
         </div>
@@ -562,63 +566,153 @@
     </section>
 
 
-    <!-- ================= SECTION 5: PROJECTED MILESTONES & ROI ================= -->
-    <section class="space-y-6 page-break pt-4">
+    <!-- ================= SECTION 5: TARGETS, PRICING & NEXT STEPS ================= -->
+    <section class="space-y-4 clean-break pt-2">
       <div class="flex items-center gap-3">
-        <span class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-sm font-mono">05</span>
+        <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-xs font-mono">05</span>
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Projected Growth Milestones &amp; Next Step</h2>
-          <p class="text-xs text-slate-400">Measurable business outcomes over a 90-day implementation cycle</p>
+          <h2 class="text-lg sm:text-xl font-bold text-white tracking-tight">Projected Targets, Commercial Models &amp; Next Steps</h2>
+          <p class="text-xs text-slate-400">Clear milestones, flexible engagement structures, and straightforward next steps</p>
         </div>
       </div>
 
-      <!-- OUTCOMES MATRIX -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-          <span class="text-xs font-bold text-sky-400 font-mono uppercase">Days 1 &ndash; 30</span>
-          <h4 class="text-base font-bold text-white">Clean Foundation</h4>
-          <ul class="text-xs text-slate-300 space-y-1.5 pt-1">
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> 0 crawling errors &amp; duplicate URL purged</li>
+      <!-- TARGETS MATRIX -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 avoid-break">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-1.5">
+          <span class="text-[10px] font-bold text-sky-400 font-mono uppercase">Days 1 &ndash; 30 Targets</span>
+          <h4 class="text-sm font-bold text-white">Technical Baseline</h4>
+          <ul class="text-[11px] text-slate-300 space-y-1 pt-1">
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> 0 crawl errors &amp; duplicate page redirected</li>
             <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> 100% NAP consistency across website</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Full Schema markup &amp; click-to-call live</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Mobile speed improved to 85+</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> LocalBusiness schema &amp; click-to-call live</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Mobile performance optimization completed</li>
           </ul>
         </div>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-          <span class="text-xs font-bold text-amber-400 font-mono uppercase">Days 30 &ndash; 60</span>
-          <h4 class="text-base font-bold text-white">Keyword Footprint 5x</h4>
-          <ul class="text-xs text-slate-300 space-y-1.5 pt-1">
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> 6 new service landing pages ranking</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Angi &amp; BuildZoom citations verified</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Secondary GBP categories indexing</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> 50+ new geo-tagged photos active</li>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-1.5">
+          <span class="text-[10px] font-bold text-amber-400 font-mono uppercase">Days 30 &ndash; 60 Targets</span>
+          <h4 class="text-sm font-bold text-white">Content Expansion</h4>
+          <ul class="text-[11px] text-slate-300 space-y-1 pt-1">
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> 6 new specialized service pages indexed</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Angi &amp; BuildZoom directory profiles verified</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Secondary GBP categories &amp; catalog active</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> 50+ new authentic project photos added</li>
           </ul>
         </div>
 
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-2">
-          <span class="text-xs font-bold text-emerald-400 font-mono uppercase">Days 60 &ndash; 90</span>
-          <h4 class="text-base font-bold text-white">Map Pack Dominance</h4>
-          <ul class="text-xs text-slate-300 space-y-1.5 pt-1">
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Breaking the 1-mile geofence</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Top-3 Map Pack across Central Amarillo</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> 3x to 5x increase in qualified quote calls</li>
-            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Capturing AI Overview storm leads</li>
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-1.5">
+          <span class="text-[10px] font-bold text-emerald-400 font-mono uppercase">Days 60 &ndash; 90 Targets</span>
+          <h4 class="text-sm font-bold text-white">Map Expansion</h4>
+          <ul class="text-[11px] text-slate-300 space-y-1 pt-1">
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Expanding map rankings into Central Amarillo</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Measurable lift in qualified quote calls</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Emerging mentions in AI search overviews</li>
+            <li class="flex items-start gap-1.5"><span class="text-emerald-400">&check;</span> Established baseline for long-term growth</li>
           </ul>
         </div>
+      </div>
+
+      <!-- DISCLAIMER -->
+      <p class="text-[10px] text-slate-400 italic text-center font-mono avoid-break">
+        *Disclaimer: These are strategic performance targets based on competitor deficit models, not guaranteed rankings. Actual timeline varies with Google algorithm updates and implementation speed.
+      </p>
+
+      <!-- INVESTMENT & COMMERCIAL MODELS -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3.5 avoid-break">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+          <div>
+            <h3 class="text-sm font-bold text-white">Engagement Models &amp; Investment Framework</h3>
+            <p class="text-[11px] text-slate-400">Flexible options tailored to your internal resources and speed requirements</p>
+          </div>
+          <span class="evidence-tag bg-sky-500/10 text-sky-400 border border-sky-500/30">Transparent Scope</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+            <div class="flex items-center justify-between">
+              <strong class="text-white text-sm">Option A: Foundation &amp; Technical Sprint</strong>
+              <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">One-Time Project</span>
+            </div>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              Complete execution of <strong>Phase 1</strong> (Heading hierarchy, 301 redirect, footer NAP standardization, click-to-call, LocalBusiness schema injection, image alt tags, and mobile speed tuning). Ideal for resolving all technical friction points immediately.
+            </p>
+          </div>
+
+          <div class="bg-slate-950 p-4 rounded-xl border border-sky-900/50 space-y-2 relative overflow-hidden">
+            <div class="flex items-center justify-between">
+              <strong class="text-sky-300 text-sm">Option B: Full Turnkey Growth Partner</strong>
+              <span class="text-[10px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded font-mono border border-sky-500/30">Monthly Retainer</span>
+            </div>
+            <p class="text-slate-400 text-[11px] leading-relaxed">
+              Full execution across <strong>all 4 Phases</strong> (Technical Sprint + 6 Service Landing Pages + Neighborhood Hubs + GBP Optimization + Tier-1 Citation Building + Monthly Geo-Grid Tracking &amp; Reporting). Built to achieve city-wide map pack dominance.
+            </p>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-400 leading-relaxed font-mono">
+          &rarr; <em>Specific scope boundaries, management fees, and timeline milestones will be finalized collaboratively after our initial strategy walkthrough.</em>
+        </p>
+      </div>
+
+      <!-- WHY WORK WITH US & WHAT HAPPENS NEXT -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 avoid-break">
+        
+        <!-- WHY WORK WITH US -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+            Why Partner With Us?
+          </h3>
+          <ul class="text-[11px] text-slate-300 space-y-1.5">
+            <li class="flex items-start gap-1.5">
+              <span class="text-sky-400 font-bold">&check;</span>
+              <span><strong>Data-Driven Approach:</strong> We measure actual local search grids and competitive deficit gaps, not vanity metrics.</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <span class="text-sky-400 font-bold">&check;</span>
+              <span><strong>Contractor Focused:</strong> We specialize in high-ticket trades where storm damage and roof replacements require rapid lead capture.</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <span class="text-sky-400 font-bold">&check;</span>
+              <span><strong>Transparent Tracking:</strong> Weekly GA4 and UTM attribution reporting so you see every call generated.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- WHAT HAPPENS NEXT -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-2">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            What Happens Next? (Simple 3-Step Process)
+          </h3>
+          <div class="space-y-1.5 text-[11px] text-slate-300 font-mono">
+            <div class="bg-slate-950 p-2 rounded-lg border border-slate-800 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-sky-400 flex items-center justify-center font-bold text-xs shrink-0">1</span>
+              <span><strong>10-Min Strategy Call:</strong> Review live search grid and prioritize quick wins.</span>
+            </div>
+            <div class="bg-slate-950 p-2 rounded-lg border border-slate-800 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-amber-400 flex items-center justify-center font-bold text-xs shrink-0">2</span>
+              <span><strong>Finalize Scope:</strong> Select preferred engagement model and deliverables.</span>
+            </div>
+            <div class="bg-slate-950 p-2 rounded-lg border border-slate-800 flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-slate-800 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">3</span>
+              <span><strong>Kick Off Phase 1:</strong> Deploy technical and foundation fixes within 7 business days.</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- CTA CALLOUT BOX -->
-      <div class="gradient-hero border border-sky-500/40 rounded-3xl p-8 sm:p-10 text-center space-y-4 shadow-2xl relative overflow-hidden">
-        <div class="max-w-2xl mx-auto space-y-2">
+      <div class="gradient-hero border border-sky-500/40 rounded-3xl p-6 sm:p-8 text-center space-y-3 shadow-2xl relative overflow-hidden avoid-break">
+        <div class="max-w-2xl mx-auto space-y-1.5">
           <span class="px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40 uppercase tracking-widest font-mono">
             NEXT STEP &bull; ZERO PRESSURE
           </span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+          <h3 class="text-xl sm:text-2xl font-extrabold text-white">
             Let's Review the Live Amarillo Grid Map Together
           </h3>
           <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-            With your 23-year history and 4.9★ reputation, fixing these technical levers will generate an immediate return. Let’s do a quick 10-minute screen-share call to walk through the live grid map and prioritize the Phase 1 quick wins.
+            With your nearly 40-year history and 4.9★ reputation, fixing these technical levers will generate an immediate return. Let’s do a quick 10-minute screen-share call to walk through the live grid map and align on the Phase 1 quick wins.
           </p>
         </div>
 
@@ -635,12 +729,12 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="border-t border-slate-800/80 pt-6 pb-12 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-mono gap-3">
+    <footer class="border-t border-slate-800/80 pt-4 pb-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 font-mono gap-2 avoid-break">
       <div>
-        <span>Rhynehart Roofing, Inc. &bull; Local SEO Audit &amp; Growth Proposal</span>
+        <span>Rhynehart Roofing, Inc. &bull; Strategic Local SEO Audit &amp; Growth Proposal</span>
       </div>
       <div>
-        <span>Audit Date: November 2026 &bull; BrightLocal Location ID: 4191821</span>
+        <span>Audit Reference: November 2026 &bull; BrightLocal Location ID: 4191821</span>
       </div>
     </footer>
 
@@ -648,4 +742,3 @@
 
 </body>
 </html>
-

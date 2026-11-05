@@ -35,7 +35,7 @@
 
 ### 0:00 - 0:20 | Hook & Trust
 *Visual:* Webcam over GBP 4.9★ rating.  
-*"Hey Chris, René, and the team at Rhynehart Roofing! First off, congratulations on 23 years in business and an incredible 4.9-star reputation across 96 Google reviews. Customers constantly praise René and Dale for being honest and walking them through insurance claims without upselling—that level of customer trust in Amarillo is rare."*
+*"Hey Chris, René, Dale, and the team at Rhynehart Roofing! First off, congratulations on nearly 40 years in business since 1986 and an incredible 4.9-star reputation across 96 Google reviews. Customers constantly praise René and Dale for being honest and walking them through insurance claims without upselling—that level of customer trust in Amarillo is rare."*
 
 ### 0:20 - 0:55 | Rank Map Visibility
 *Visual:* BrightLocal Local Search Grid map.  
